@@ -11,39 +11,76 @@ import OpportunityDetails from "./pages/student/OpportunityDetails";
 import CompanyDashboard from "./pages/company/CompanyDashboard";
 
 import TPODashboard from "./pages/tpo/TPODashboard";
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./components/common/ProtectedRoute";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
 
-        {/* Auth */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+          {/* Auth */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
 
-        {/* Student */}
-        <Route path="/student/dashboard" element={<StudentDashboard />} />
-        <Route path="/student/profile" element={<StudentProfile />} />
-        <Route path="/student/opportunities" element={<Opportunities />} />
-        <Route
-          path="/student/opportunities/:id"
-          element={<OpportunityDetails />}
-        />
+          {/* Student */}
+          <Route
+            path="/student/dashboard"
+            element={
+              <ProtectedRoute allowedRole="student">
+                <StudentDashboard />
+              </ProtectedRoute>
+            } />
+          <Route
+            path="/student/profile"
+            element={
+              <ProtectedRoute allowedRole="student">
+                <StudentProfile />
+              </ProtectedRoute>
+            } />
+          <Route
+            path="/student/opportunities"
+            element={
+              <ProtectedRoute allowedRole="student">
+                <Opportunities />
+              </ProtectedRoute>
+            } />
+          <Route
+            path="/student/opportunities/:id"
+            element={
+              <ProtectedRoute allowedRole="student">
+                <OpportunityDetails />
+              </ProtectedRoute>
+            } />
 
-        {/* Company */}
-        <Route path="/company/dashboard" element={<CompanyDashboard />} />
+          {/* Company */}
+          <Route
+            path="/company/dashboard"
+            element={
+              <ProtectedRoute allowedRole="company">
+                <CompanyDashboard />
+              </ProtectedRoute>
+            } />
 
-        {/* TPO */}
-        <Route path="/tpo/dashboard" element={<TPODashboard />} />
+          {/* TPO */}
+          <Route
+            path="/tpo/dashboard"
+            element={
+              <ProtectedRoute allowedRole="tpo">
+                <TPODashboard />
+              </ProtectedRoute>
+            } />
 
-        {/* Default */}
-        <Route path="/" element={<Navigate to="/login" replace />} />
+          {/* Default */}
+          <Route path="/" element={<Navigate to="/login" replace />} />
 
-        {/* 404 */}
-        <Route path="*" element={<Navigate to="/login" replace />} />
+          {/* 404 */}
+          <Route path="*" element={<Navigate to="/login" replace />} />
 
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
