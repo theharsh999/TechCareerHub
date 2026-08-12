@@ -1,37 +1,49 @@
-import DashboardLayout from "./components/layout/DashboardLayout";
-import Card from "./components/common/Card";
-import Badge from "./components/common/Badge";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
+import Login from "./pages/auth/Login";
+import Signup from "./pages/auth/Signup";
+
+import StudentDashboard from "./pages/student/StudentDashboard";
+import StudentProfile from "./pages/student/StudentProfile";
+import Opportunities from "./pages/student/Opportunities";
+import OpportunityDetails from "./pages/student/OpportunityDetails";
+
+import CompanyDashboard from "./pages/company/CompanyDashboard";
+
+import TPODashboard from "./pages/tpo/TPODashboard";
 
 function App() {
   return (
-    <DashboardLayout>
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold">Good evening, Harsh 👋</h1>
-          <p className="text-slate-400 mt-2">
-            Find opportunities that match your skills.
-          </p>
-        </div>
+    <BrowserRouter>
+      <Routes>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          <Card>
-            <p className="text-slate-400 text-sm">Recommended</p>
-            <p className="text-3xl font-bold mt-2">24</p>
-          </Card>
+        {/* Auth */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
 
-          <Card>
-            <p className="text-slate-400 text-sm">Applications</p>
-            <p className="text-3xl font-bold mt-2">8</p>
-          </Card>
+        {/* Student */}
+        <Route path="/student/dashboard" element={<StudentDashboard />} />
+        <Route path="/student/profile" element={<StudentProfile />} />
+        <Route path="/student/opportunities" element={<Opportunities />} />
+        <Route
+          path="/student/opportunities/:id"
+          element={<OpportunityDetails />}
+        />
 
-          <Card>
-            <p className="text-slate-400 text-sm">Profile Match</p>
-            <p className="text-3xl font-bold mt-2">87%</p>
-            <Badge variant="success">Strong Profile</Badge>
-          </Card>
-        </div>
-      </div>
-    </DashboardLayout>
+        {/* Company */}
+        <Route path="/company/dashboard" element={<CompanyDashboard />} />
+
+        {/* TPO */}
+        <Route path="/tpo/dashboard" element={<TPODashboard />} />
+
+        {/* Default */}
+        <Route path="/" element={<Navigate to="/login" replace />} />
+
+        {/* 404 */}
+        <Route path="*" element={<Navigate to="/login" replace />} />
+
+      </Routes>
+    </BrowserRouter>
   );
 }
 
