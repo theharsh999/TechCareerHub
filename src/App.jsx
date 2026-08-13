@@ -5,6 +5,7 @@ import Signup from "./pages/auth/Signup";
 
 import StudentDashboard from "./pages/student/StudentDashboard";
 import StudentProfile from "./pages/student/StudentProfile";
+import StudentApplications from "./pages/student/StudentApplications";
 import Opportunities from "./pages/student/Opportunities";
 import OpportunityDetails from "./pages/student/OpportunityDetails";
 
@@ -44,6 +45,13 @@ function App() {
             element={
               <ProtectedRoute allowedRole="student">
                 <Opportunities />
+              </ProtectedRoute>
+            } />
+          <Route
+            path="/student/applications"
+            element={
+              <ProtectedRoute allowedRole="student">
+                <StudentApplications />
               </ProtectedRoute>
             } />
           <Route
