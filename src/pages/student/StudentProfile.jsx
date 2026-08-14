@@ -406,6 +406,19 @@ const StudentProfile = () => {
                                         />
                                     </label>
 
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            window.open(
+                                                "https://resume-edge-ai.vercel.app/builder",
+                                                "_blank"
+                                            )
+                                        }
+                                        className="bg-purple-600 hover:bg-purple-500 px-6 py-3 rounded-xl font-medium"
+                                    >
+                                        Build Resume
+                                    </button>
+
                                     {resume && (
                                         <a
                                             href={resume}
