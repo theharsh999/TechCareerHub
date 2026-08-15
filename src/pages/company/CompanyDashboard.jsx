@@ -22,6 +22,7 @@ export default function CompanyDashboard() {
     postOpportunity,
     updateApplicantStatus,
     refresh,
+    error,
   } = useCompanyDashboardData();
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -53,6 +54,12 @@ export default function CompanyDashboard() {
             Refresh
           </Button>
         </div>
+
+        {error && (
+          <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm">
+            {error.message || String(error)}
+          </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-1">

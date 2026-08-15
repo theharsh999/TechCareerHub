@@ -12,6 +12,7 @@ import OpportunityDetails from "./pages/student/OpportunityDetails";
 import CompanyDashboard from "./pages/company/CompanyDashboard";
 
 import TPODashboard from "./pages/tpo/TPODashboard";
+import TPOStudents from "./pages/tpo/TPOStudents";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 
@@ -77,6 +78,13 @@ function App() {
             element={
               <ProtectedRoute allowedRole="tpo">
                 <TPODashboard />
+              </ProtectedRoute>
+            } />
+          <Route
+            path="/tpo/students"
+            element={
+              <ProtectedRoute allowedRole="tpo">
+                <TPOStudents />
               </ProtectedRoute>
             } />
 

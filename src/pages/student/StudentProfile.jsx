@@ -19,6 +19,7 @@ const StudentProfile = () => {
     const { user, profile } = useAuth();
 
     const [form, setForm] = useState({
+        roll_no: "",
         branch: "",
         academic_year: "",
         cgpa: "",
@@ -62,6 +63,7 @@ const StudentProfile = () => {
 
             if (data) {
                 setForm({
+                    roll_no: data.roll_no || "",
                     branch: data.branch || "",
                     academic_year: data.academic_year || "",
                     cgpa: data.cgpa || "",
@@ -295,6 +297,7 @@ const StudentProfile = () => {
             .from("students")
             .upsert({
                 id: user.id,
+                roll_no: form.roll_no ? form.roll_no.trim() : null,
                 branch: form.branch,
                 academic_year: form.academic_year,
                 cgpa: form.cgpa ? Number(form.cgpa) : null,
@@ -457,6 +460,20 @@ const StudentProfile = () => {
                             </h2>
 
                             <div className="grid md:grid-cols-2 gap-4">
+
+                                <div>
+                                    <label className="block text-sm text-slate-300 mb-2">
+                                        Roll Number
+                                    </label>
+
+                                    <input
+                                        name="roll_no"
+                                        value={form.roll_no}
+                                        onChange={handleChange}
+                                        placeholder="e.g. 21BCE1010"
+                                        className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2.5 outline-none focus:border-indigo-500"
+                                    />
+                                </div>
 
                                 <div>
                                     <label className="block text-sm text-slate-300 mb-2">

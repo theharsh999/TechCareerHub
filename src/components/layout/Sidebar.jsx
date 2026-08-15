@@ -15,9 +15,9 @@ import {
 
 const SECTIONS = {
   tpo: [
-    { to: "/tpo", label: "Dashboard", icon: LayoutDashboard },
-    { to: "/tpo", label: "Students", icon: Users },
-    { to: "/tpo", label: "Notifications", icon: Bell },
+    { to: "/tpo/dashboard", label: "Dashboard", icon: LayoutDashboard },
+    { to: "/tpo/students", label: "Students", icon: Users },
+    { to: "/tpo/dashboard", label: "Notifications", icon: Bell },
   ],
   company: [
     { to: "/company", label: "Dashboard", icon: LayoutDashboard },

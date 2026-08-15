@@ -5,18 +5,19 @@ import { supabase } from "../lib/supabase";
 import { useAuth } from "../context/AuthContext";
 
 // Map UI statuses to known existing database statuses
-// Since the database constraint hasn't been updated yet, we fallback unsupported statuses.
 const STATUS_MAP = {
   "Applied": "applied",
   "Shortlisted": "shortlisted",
-  "Interview Scheduled": "shortlisted", // Fallback: closest supported status
-  "Offered": "shortlisted",             // Fallback: closest supported status
+  "Interview Scheduled": "interview_scheduled",
+  "Offered": "offered",
   "Rejected": "rejected",
 };
 
 const DISPLAY_STATUS_MAP = {
   applied: "Applied",
   shortlisted: "Shortlisted",
+  interview_scheduled: "Interview Scheduled",
+  offered: "Offered",
   rejected: "Rejected",
 };
 
@@ -124,7 +125,7 @@ export function useCompanyDashboardData() {
 
       return {
         id: application.id,
-        studentName: studentProfile?.full_name || "Unknown Student",
+        studentName: studentProfile?.full_name || (student?.roll_no ? `Student (Roll No: ${student.roll_no})` : "Unknown Student"),
         rollNo: student?.roll_no || "N/A",
         opportunity: opportunity?.title || "Unknown Opportunity",
         appliedDate: application.applied_at,
@@ -140,9 +141,9 @@ export function useCompanyDashboardData() {
 
     const totalApplicants = applicationData.length;
 
-    // Since 'offered' isn't supported by the DB yet, we use 'shortlisted' as the closest proxy for now.
+    // Use 'offered' to accurately reflect hired candidates this season.
     const hiredThisSeason = applicationData.filter(
-      (a) => a.status === "shortlisted"
+      (a) => a.status === "offered"
     ).length;
 
     // 10. Final profile shape
@@ -209,7 +210,7 @@ export function useCompanyDashboardData() {
           .insert({
             company_id: company.id,
             title: opportunity.title,
-            type: opportunity.type,
+            type: opportunity.type === "Full-time" ? "job" : "internship",
             location: opportunity.location,
             stipend: opportunity.stipend,
             application_deadline: opportunity.deadline,
@@ -235,14 +236,18 @@ export function useCompanyDashboardData() {
         // Important: We should ideally only update if the opportunity belongs to the company.
         // Given we don't want to make complex nested RPC updates, we rely on RLS 
         // to prevent unauthorized updates, but we do standard update here.
-        const { error } = await supabase
+        const { data, error } = await supabase
           .from("applications")
           .update({
             status: dbStatus,
           })
-          .eq("id", applicantId);
+          .eq("id", applicantId)
+          .select();
 
         if (error) throw error;
+        if (!data || data.length === 0) {
+          throw new Error("Update failed. You may not have permission to modify this applicant's status (RLS check failed) or the application does not exist.");
+        }
 
         await load();
       } catch (err) {
