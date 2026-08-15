@@ -13,6 +13,7 @@ import { RefreshCw } from "lucide-react";
 import StatsOverview from "../../components/tpo/StatsOverview";
 import ApplicationsOverviewTable from "../../components/tpo/ApplicationsOverviewTable";
 import NotificationsPanel from "../../components/tpo/NotificationsPanel";
+import NotificationBell from "../../components/tpo/NotificationBell";
 import Button from "../../components/common/Button";
 import { useTPODashboardData } from "../../hooks/useTPODashboardData";
 
@@ -45,14 +46,22 @@ export default function TPODashboard() {
             Overview of student applications and placement activity
           </p>
         </div>
-        <Button
-          variant="secondary"
-          className="flex items-center gap-2 text-sm"
-          onClick={refresh}
-        >
-          <RefreshCw size={14} />
-          Refresh
-        </Button>
+        <div className="flex items-center gap-3">
+          <NotificationBell
+            notifications={notifications}
+            unreadCount={unreadCount}
+            onMarkAsRead={markAsRead}
+            onMarkAllAsRead={markAllAsRead}
+          />
+          <Button
+            variant="secondary"
+            className="flex items-center gap-2 text-sm"
+            onClick={refresh}
+          >
+            <RefreshCw size={14} />
+            Refresh
+          </Button>
+        </div>
       </div>
 
       <StatsOverview stats={stats} />

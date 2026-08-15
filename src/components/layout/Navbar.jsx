@@ -10,6 +10,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Briefcase } from "lucide-react";
 
 const LINKS = [
+  { to: "/student", label: "Student" },
   { to: "/tpo", label: "TPO" },
   { to: "/company", label: "Company" },
 ];

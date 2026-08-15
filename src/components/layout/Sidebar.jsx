@@ -11,9 +11,14 @@ import {
   Bell,
   Building2,
   FileText,
+  ClipboardList,
 } from "lucide-react";
 
 const SECTIONS = {
+  student: [
+    { to: "/student", label: "Opportunities", icon: LayoutDashboard },
+    { to: "/student", label: "My Applications", icon: ClipboardList },
+  ],
   tpo: [
     { to: "/tpo", label: "Dashboard", icon: LayoutDashboard },
     { to: "/tpo", label: "Students", icon: Users },
@@ -29,7 +34,11 @@ const SECTIONS = {
 
 export default function Sidebar() {
   const location = useLocation();
-  const section = location.pathname.startsWith("/company") ? "company" : "tpo";
+  const section = location.pathname.startsWith("/company")
+    ? "company"
+    : location.pathname.startsWith("/student")
+    ? "student"
+    : "tpo";
   const items = SECTIONS[section];
 
   return (

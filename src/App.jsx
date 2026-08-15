@@ -9,6 +9,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import DashboardLayout from "./components/layout/DashboardLayout";
 import TPODashboard from "./pages/tpo/TPODashboard";
 import CompanyDashboard from "./pages/company/CompanyDashboard";
+import StudentDashboard from "./pages/student/StudentDashboard";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/" element={<Navigate to="/tpo" replace />} />
         <Route path="/tpo" element={<TPODashboard />} />
         <Route path="/company" element={<CompanyDashboard />} />
+        <Route path="/student" element={<StudentDashboard />} />
         <Route path="*" element={<Navigate to="/tpo" replace />} />
       </Routes>
     </DashboardLayout>
