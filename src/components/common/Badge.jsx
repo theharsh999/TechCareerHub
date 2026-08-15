@@ -1,19 +1,17 @@
-const Badge = ({ children, variant = "default" }) => {
-  const variants = {
-    default: "bg-slate-800 text-slate-300",
-    success: "bg-green-500/10 text-green-400",
-    warning: "bg-yellow-500/10 text-yellow-400",
-    danger: "bg-red-500/10 text-red-400",
-    primary: "bg-indigo-500/10 text-indigo-400",
-  };
+// src/components/common/Badge.jsx
+//
+// PLACEHOLDER — your real Badge.jsx wasn't in the files I received.
+// Renders children as-is; callers (like the TPO applications table) pass
+// explicit color classes via className, so this stays unopinionated.
+// Drop this file when merging with your actual project.
 
+export default function Badge({ children, className = "", ...props }) {
   return (
     <span
-      className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium ${variants[variant]}`}
+      className={`inline-flex items-center rounded-full text-xs font-medium ${className}`}
+      {...props}
     >
       {children}
     </span>
   );
-};
-
-export default Badge;
+}

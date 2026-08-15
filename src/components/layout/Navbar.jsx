@@ -1,34 +1,43 @@
-import { Bell, Search } from "lucide-react";
+// src/components/layout/Navbar.jsx
+//
+// PLACEHOLDER — your real Navbar.jsx wasn't in the files I received.
+// Includes a simple role switcher (TPO / Company) purely so both dashboards
+// are reachable and "linked together" for demo purposes. Remove the
+// switcher when merging into the real navbar (real app will route by
+// authenticated user role instead).
 
-const Navbar = () => {
+import { useLocation, useNavigate } from "react-router-dom";
+import { Briefcase, LogOut } from "lucide-react";
+import { useAuth } from "../../context/AuthContext";
+
+export default function Navbar() {
+  const location = useLocation();
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/login");
+  };
+
   return (
-    <header className="h-16 border-b border-slate-800 bg-[#0B0F19]/95 backdrop-blur flex items-center justify-between px-6">
-      <div className="flex items-center gap-3">
-        <div className="h-9 w-9 rounded-lg bg-indigo-500 flex items-center justify-center font-bold">
-          T
+    <header className="h-16 shrink-0 border-b border-slate-800/80 bg-[#0B0F19]/95 backdrop-blur flex items-center justify-between px-6">
+      <div className="flex items-center gap-2">
+        <div className="p-1.5 rounded-lg bg-primary/10 text-primary">
+          <Briefcase size={18} />
         </div>
-        <span className="text-lg font-bold">TechCareerHub</span>
+        <span className="text-white font-semibold text-sm">TechCareerHub</span>
       </div>
 
-      <div className="hidden md:flex items-center gap-2 w-80 rounded-lg border border-slate-800 bg-slate-900 px-3 py-2">
-        <Search size={18} className="text-slate-500" />
-        <input
-          placeholder="Search opportunities..."
-          className="w-full bg-transparent outline-none text-sm text-slate-200 placeholder:text-slate-500"
-        />
-      </div>
-
-      <div className="flex items-center gap-4">
-        <button className="text-slate-400 hover:text-white">
-          <Bell size={20} />
+      <nav className="flex items-center gap-1">
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+        >
+          <LogOut size={16} />
+          Logout
         </button>
-
-        <div className="h-9 w-9 rounded-full bg-indigo-500 flex items-center justify-center font-semibold">
-          H
-        </div>
-      </div>
+      </nav>
     </header>
   );
-};
-
-export default Navbar;
+}

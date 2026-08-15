@@ -1,20 +1,20 @@
+// src/components/layout/DashboardLayout.jsx
+//
+// PLACEHOLDER — your real DashboardLayout.jsx wasn't in the files I
+// received. Wraps Navbar + Sidebar + page content, matching what
+// TPODashboard.jsx's header comment assumes routing already provides.
+
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 
-const DashboardLayout = ({ children }) => {
+export default function DashboardLayout({ children }) {
   return (
-    <div className="min-h-screen bg-[#0B0F19] text-slate-50">
+    <div className="min-h-screen flex flex-col bg-background">
       <Navbar />
-
-      <div className="flex">
+      <div className="flex flex-1 min-h-0">
         <Sidebar />
-
-        <main className="flex-1 min-w-0 p-6 md:p-8">
-          {children}
-        </main>
+        <main className="flex-1 overflow-y-auto px-6 py-6">{children}</main>
       </div>
     </div>
   );
-};
-
-export default DashboardLayout;
+}

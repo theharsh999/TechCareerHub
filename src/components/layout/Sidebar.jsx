@@ -1,39 +1,53 @@
+// src/components/layout/Sidebar.jsx
+//
+// PLACEHOLDER — your real Sidebar.jsx wasn't in the files I received.
+// Section is chosen from the current route so it works for both /tpo and
+// /company without extra props. Drop this file when merging.
+
+import { Link, useLocation } from "react-router-dom";
 import {
   LayoutDashboard,
-  BriefcaseBusiness,
+  Users,
+  Bell,
+  Building2,
   FileText,
-  UserRound,
-  Settings,
 } from "lucide-react";
 
-const Sidebar = () => {
-  const menu = [
-    { label: "Dashboard", icon: LayoutDashboard },
-    { label: "Opportunities", icon: BriefcaseBusiness },
-    { label: "Applications", icon: FileText },
-    { label: "Profile", icon: UserRound },
-    { label: "Settings", icon: Settings },
-  ];
-
-  return (
-    <aside className="hidden md:flex w-64 min-h-[calc(100vh-4rem)] border-r border-slate-800 bg-[#0B0F19] p-4 flex-col">
-      <nav className="space-y-1">
-        {menu.map(({ label, icon: Icon }, index) => (
-          <button
-            key={label}
-            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition ${
-              index === 0
-                ? "bg-indigo-500/10 text-indigo-400"
-                : "text-slate-400 hover:bg-slate-800 hover:text-white"
-            }`}
-          >
-            <Icon size={19} />
-            {label}
-          </button>
-        ))}
-      </nav>
-    </aside>
-  );
+const SECTIONS = {
+  tpo: [
+    { to: "/tpo", label: "Dashboard", icon: LayoutDashboard },
+    { to: "/tpo", label: "Students", icon: Users },
+    { to: "/tpo", label: "Notifications", icon: Bell },
+  ],
+  company: [
+    { to: "/company", label: "Dashboard", icon: LayoutDashboard },
+    { to: "/company", label: "Opportunities", icon: FileText },
+    { to: "/company", label: "Applicants", icon: Users },
+    { to: "/company", label: "Profile", icon: Building2 },
+  ],
 };
 
-export default Sidebar;
+export default function Sidebar() {
+  const location = useLocation();
+  const section = location.pathname.startsWith("/company") ? "company" : "tpo";
+  const items = SECTIONS[section];
+
+  return (
+    <aside className="w-56 shrink-0 border-r border-slate-800/80 bg-[#0B0F19] px-3 py-4 hidden md:flex md:flex-col gap-1">
+      {items.map((item, i) => (
+        <Link
+          key={item.label + i}
+          to={item.to}
+          className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors ${
+            i === 0
+              ? "bg-primary/10 text-primary font-medium"
+              : "text-slate-400 hover:text-white hover:bg-slate-800/50"
+          }`}
+        >
+          <item.icon size={16} />
+          {item.label}
+        </Link>
+      ))}
+    </aside>
+  );
+}
