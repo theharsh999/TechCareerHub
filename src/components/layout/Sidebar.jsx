@@ -20,10 +20,10 @@ const SECTIONS = {
     { to: "/tpo/dashboard", label: "Notifications", icon: Bell },
   ],
   company: [
-    { to: "/company", label: "Dashboard", icon: LayoutDashboard },
-    { to: "/company", label: "Opportunities", icon: FileText },
-    { to: "/company", label: "Applicants", icon: Users },
-    { to: "/company", label: "Profile", icon: Building2 },
+    { to: "/company/dashboard", label: "Dashboard", icon: LayoutDashboard },
+    { to: "/company/opportunities", label: "Opportunities", icon: FileText },
+    { to: "/company/applicants", label: "Applicants", icon: Users },
+    { to: "/company/profile", label: "Profile", icon: Building2 },
   ],
 };
 
@@ -39,7 +39,7 @@ export default function Sidebar() {
           key={item.label + i}
           to={item.to}
           className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors ${
-            i === 0
+            location.pathname === item.to
               ? "bg-primary/10 text-primary font-medium"
               : "text-slate-400 hover:text-white hover:bg-slate-800/50"
           }`}

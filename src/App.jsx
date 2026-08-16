@@ -10,6 +10,9 @@ import Opportunities from "./pages/student/Opportunities";
 import OpportunityDetails from "./pages/student/OpportunityDetails";
 
 import CompanyDashboard from "./pages/company/CompanyDashboard";
+import CompanyOpportunities from "./pages/company/CompanyOpportunities";
+import CompanyApplicants from "./pages/company/CompanyApplicants";
+import CompanyProfile from "./pages/company/CompanyProfile";
 
 import TPODashboard from "./pages/tpo/TPODashboard";
 import TPOStudents from "./pages/tpo/TPOStudents";
@@ -69,6 +72,27 @@ function App() {
             element={
               <ProtectedRoute allowedRole="company">
                 <CompanyDashboard />
+              </ProtectedRoute>
+            } />
+          <Route
+            path="/company/opportunities"
+            element={
+              <ProtectedRoute allowedRole="company">
+                <CompanyOpportunities />
+              </ProtectedRoute>
+            } />
+          <Route
+            path="/company/applicants"
+            element={
+              <ProtectedRoute allowedRole="company">
+                <CompanyApplicants />
+              </ProtectedRoute>
+            } />
+          <Route
+            path="/company/profile"
+            element={
+              <ProtectedRoute allowedRole="company">
+                <CompanyProfile />
               </ProtectedRoute>
             } />
 
