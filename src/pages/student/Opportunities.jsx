@@ -7,6 +7,7 @@ const Opportunities = () => {
   const navigate = useNavigate();
 
   const [opportunities, setOpportunities] = useState([]);
+  const [appliedOpportunityIds, setAppliedOpportunityIds] = useState(new Set());
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -18,6 +19,8 @@ const Opportunities = () => {
   const fetchOpportunities = async () => {
     setLoading(true);
     setError("");
+
+    const { data: { user } } = await supabase.auth.getUser();
 
     const { data, error } = await supabase
       .from("opportunities")
@@ -34,6 +37,18 @@ const Opportunities = () => {
       setError(`Unable to load opportunities: ${error.message}`);
     } else {
       setOpportunities(data || []);
+      
+      // Fetch user's applications
+      if (user) {
+        const { data: appsData } = await supabase
+          .from("applications")
+          .select("opportunity_id")
+          .eq("student_id", user.id);
+          
+        if (appsData) {
+          setAppliedOpportunityIds(new Set(appsData.map(a => a.opportunity_id)));
+        }
+      }
     }
 
     setLoading(false);
@@ -114,9 +129,16 @@ const Opportunities = () => {
               >
 
                 {/* Title */}
-                <h2 className="text-2xl font-semibold mb-2">
-                  {opportunity.title}
-                </h2>
+                <div className="flex justify-between items-start mb-2">
+                  <h2 className="text-2xl font-semibold">
+                    {opportunity.title}
+                  </h2>
+                  {appliedOpportunityIds.has(opportunity.id) && (
+                    <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap ml-3">
+                      ✓ Applied
+                    </span>
+                  )}
+                </div>
 
                 {/* Company */}
                 <p className="text-purple-400 font-medium mb-5">

@@ -357,76 +357,70 @@ const OpportunityDetails = () => {
             </div>
           )}
 
-          {/* Eligibility Checker */}
+          {/* Eligibility Checker & Apply Flow */}
           <div className="border-t border-slate-800 pt-8">
+            {applicationStatus ? (
+              <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-5">
+                <h3 className="text-green-400 text-xl font-semibold capitalize">
+                  ✓ Application {applicationStatus.replace('_', ' ')}
+                </h3>
+                <p className="text-slate-300 mt-2">
+                  You have already applied for this opportunity.
+                </p>
+              </div>
+            ) : (
+              <>
+                <h2 className="text-2xl font-semibold mb-4">
+                  Check Your Eligibility
+                </h2>
 
-            <h2 className="text-2xl font-semibold mb-4">
-              Check Your Eligibility
-            </h2>
+                <button
+                  onClick={checkEligibility}
+                  disabled={checking}
+                  className="bg-purple-600 hover:bg-purple-500 disabled:opacity-50 px-6 py-3 rounded-xl font-medium"
+                >
+                  {checking ? "Checking..." : "Check Eligibility"}
+                </button>
 
-            <button
-              onClick={checkEligibility}
-              disabled={checking}
-              className="bg-purple-600 hover:bg-purple-500 disabled:opacity-50 px-6 py-3 rounded-xl font-medium"
-            >
-              {checking ? "Checking..." : "Check Eligibility"}
-            </button>
-
-            {eligibility && (
-              <div className="mt-6">
-
-                {eligibility.eligible ? (
-                  <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-5">
-                    <h3 className="text-green-400 text-xl font-semibold">
-                      ✓ You are Eligible
-                    </h3>
-
-                    <p className="text-slate-300 mt-2">
-                      You meet all the requirements for this opportunity.
-                    </p>
-                  </div>
-                ) : (
-                  <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-5">
-                    <h3 className="text-red-400 text-xl font-semibold">
-                      ✕ You are Not Eligible
-                    </h3>
-
-                    <p className="text-slate-300 mt-3 mb-2">
-                      Reasons:
-                    </p>
-
-                    <ul className="list-disc list-inside text-slate-300 space-y-1">
-                      {eligibility.reasons.map((reason, index) => (
-                        <li key={index}>{reason}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {eligibility?.eligible && (
+                {eligibility && (
                   <div className="mt-6">
-                    {applicationStatus ? (
+                    {eligibility.eligible ? (
                       <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-5">
                         <h3 className="text-green-400 text-xl font-semibold">
-                          ✓ Application {applicationStatus}
+                          ✓ You are Eligible
                         </h3>
                         <p className="text-slate-300 mt-2">
-                          You have already applied for this opportunity.
+                          You meet all the requirements for this opportunity.
                         </p>
                       </div>
                     ) : (
-                      <button
-                        onClick={handleApply}
-                        disabled={applying}
-                        className="bg-purple-600 hover:bg-purple-500 disabled:opacity-50 px-6 py-3 rounded-xl font-medium"
-                      >
-                        {applying ? "Applying..." : "Apply Now"}
-                      </button>
+                      <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-5">
+                        <h3 className="text-red-400 text-xl font-semibold">
+                          ✕ You are Not Eligible
+                        </h3>
+                        <p className="text-slate-300 mt-3 mb-2">Reasons:</p>
+                        <ul className="list-disc list-inside text-slate-300 space-y-1">
+                          {eligibility.reasons.map((reason, index) => (
+                            <li key={index}>{reason}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {eligibility.eligible && (
+                      <div className="mt-6">
+                        <button
+                          onClick={handleApply}
+                          disabled={applying}
+                          className="bg-purple-600 hover:bg-purple-500 disabled:opacity-50 px-6 py-3 rounded-xl font-medium"
+                        >
+                          {applying ? "Applying..." : "Apply Now"}
+                        </button>
+                      </div>
                     )}
                   </div>
                 )}
-
-              </div>
+              </>
             )}
           </div>
 
