@@ -59,11 +59,11 @@ function Signup() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B0F19] text-slate-50 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-bg-base text-text-main flex items-center justify-center p-6">
       <Card className="w-full max-w-md">
         <div className="mb-6">
           <h1 className="text-2xl font-bold">Create Account</h1>
-          <p className="text-slate-400 mt-1">
+          <p className="text-text-muted mt-1">
             Join TechCareerHub
           </p>
         </div>
@@ -71,7 +71,7 @@ function Signup() {
         <form onSubmit={handleSignup} className="space-y-4">
 
           <div>
-            <label className="block text-sm text-slate-300 mb-2">
+            <label className="block text-sm text-text-muted mb-2">
               Full Name
             </label>
 
@@ -82,12 +82,12 @@ function Signup() {
               onChange={handleChange}
               required
               placeholder="Enter your name"
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2.5 outline-none focus:border-indigo-500"
+              className="w-full rounded-lg border border-border-subtle bg-bg-card px-3 py-2.5 outline-none focus:border-indigo-500"
             />
           </div>
 
           <div>
-            <label className="block text-sm text-slate-300 mb-2">
+            <label className="block text-sm text-text-muted mb-2">
               Email
             </label>
 
@@ -98,12 +98,12 @@ function Signup() {
               onChange={handleChange}
               required
               placeholder="harsh@gamil.com"
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2.5 outline-none focus:border-indigo-500"
+              className="w-full rounded-lg border border-border-subtle bg-bg-card px-3 py-2.5 outline-none focus:border-indigo-500"
             />
           </div>
 
           <div>
-            <label className="block text-sm text-slate-300 mb-2">
+            <label className="block text-sm text-text-muted mb-2">
               Password
             </label>
 
@@ -115,12 +115,12 @@ function Signup() {
               required
               minLength={6}
               placeholder="Minimum 6 characters"
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2.5 outline-none focus:border-indigo-500"
+              className="w-full rounded-lg border border-border-subtle bg-bg-card px-3 py-2.5 outline-none focus:border-indigo-500"
             />
           </div>
 
           <div>
-            <label className="block text-sm text-slate-300 mb-2">
+            <label className="block text-sm text-text-muted mb-2">
               I am a
             </label>
 
@@ -128,7 +128,7 @@ function Signup() {
               name="role"
               value={form.role}
               onChange={handleChange}
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2.5 outline-none focus:border-indigo-500"
+              className="w-full rounded-lg border border-border-subtle bg-bg-card px-3 py-2.5 outline-none focus:border-indigo-500"
             >
               <option value="student">Student</option>
               <option value="company">Company</option>
@@ -158,7 +158,7 @@ function Signup() {
 
         </form>
 
-        <p className="text-sm text-slate-400 text-center mt-6">
+        <p className="text-sm text-text-muted text-center mt-6">
           Already have an account?{" "}
           <Link
             to="/login"

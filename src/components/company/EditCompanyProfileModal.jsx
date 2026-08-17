@@ -49,12 +49,12 @@ export default function EditCompanyProfileModal({ open, onClose, onSubmit, initi
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={!isSubmitting ? onClose : undefined}
       />
-      <div className="relative w-full max-w-md rounded-2xl border border-slate-800 bg-[#111622] p-5">
+      <div className="relative w-full max-w-md rounded-2xl border border-border-subtle bg-bg-card p-5">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-white font-semibold text-sm">Edit Company Profile</h3>
+          <h3 className="text-text-main font-semibold text-sm">Edit Company Profile</h3>
           <button
             onClick={!isSubmitting ? onClose : undefined}
-            className="text-slate-500 hover:text-slate-300 disabled:opacity-50"
+            className="text-text-main0 hover:text-text-muted disabled:opacity-50"
             disabled={isSubmitting}
             aria-label="Close"
           >
@@ -70,43 +70,43 @@ export default function EditCompanyProfileModal({ open, onClose, onSubmit, initi
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">
-            <label className="text-xs text-slate-400">Industry</label>
+            <label className="text-xs text-text-muted">Industry</label>
             <input
               value={form.industry}
               onChange={update("industry")}
               placeholder="e.g. Technology, Finance, EdTech"
-              className="bg-slate-900/60 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-primary"
+              className="bg-bg-card/60 border border-border-subtle rounded-lg px-3 py-2 text-sm text-text-main focus:outline-none focus:border-primary"
             />
           </div>
 
           <div className="flex flex-col gap-1">
-            <label className="text-xs text-slate-400">Location</label>
+            <label className="text-xs text-text-muted">Location</label>
             <input
               value={form.location}
               onChange={update("location")}
               placeholder="e.g. Mumbai, Remote"
-              className="bg-slate-900/60 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-primary"
+              className="bg-bg-card/60 border border-border-subtle rounded-lg px-3 py-2 text-sm text-text-main focus:outline-none focus:border-primary"
             />
           </div>
 
           <div className="flex flex-col gap-1">
-            <label className="text-xs text-slate-400">Website</label>
+            <label className="text-xs text-text-muted">Website</label>
             <input
               type="url"
               value={form.website}
               onChange={update("website")}
               placeholder="e.g. https://yourcompany.com"
-              className="bg-slate-900/60 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-primary"
+              className="bg-bg-card/60 border border-border-subtle rounded-lg px-3 py-2 text-sm text-text-main focus:outline-none focus:border-primary"
             />
           </div>
 
           <div className="flex flex-col gap-1">
-            <label className="text-xs text-slate-400">About the Company</label>
+            <label className="text-xs text-text-muted">About the Company</label>
             <textarea
               value={form.about}
               onChange={update("about")}
               placeholder="Describe what your company does..."
-              className="bg-slate-900/60 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-primary min-h-[100px] resize-y"
+              className="bg-bg-card/60 border border-border-subtle rounded-lg px-3 py-2 text-sm text-text-main focus:outline-none focus:border-primary min-h-[100px] resize-y"
             />
           </div>
 

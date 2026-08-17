@@ -15,8 +15,8 @@ export default function CompanyOpportunities() {
       <div className="flex flex-col gap-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-white">Opportunities</h1>
-            <p className="text-slate-400 text-sm mt-1">Manage your job and internship postings.</p>
+            <h1 className="text-2xl font-bold text-text-main">Opportunities</h1>
+            <p className="text-text-muted text-sm mt-1">Manage your job and internship postings.</p>
           </div>
           <Button variant="secondary" className="gap-2" onClick={refresh} disabled={loading}>
             <RefreshCw size={16} className={loading ? "animate-spin" : ""} />
@@ -31,7 +31,7 @@ export default function CompanyOpportunities() {
         )}
 
         {loading ? (
-          <div className="h-40 flex items-center justify-center text-slate-500">
+          <div className="h-40 flex items-center justify-center text-text-main0">
             <RefreshCw size={24} className="animate-spin" />
           </div>
         ) : (

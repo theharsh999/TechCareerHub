@@ -65,9 +65,9 @@ const StudentDashboard = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#080d19] text-white px-6 py-10">
+      <div className="min-h-screen bg-bg-base text-text-main px-6 py-10">
         <div className="max-w-6xl mx-auto">
-          <p className="text-slate-400">Loading dashboard...</p>
+          <p className="text-text-muted">Loading dashboard...</p>
         </div>
       </div>
     );
@@ -76,7 +76,7 @@ const StudentDashboard = () => {
   return (
     <>
       <StudentNavbar />
-      <div className="min-h-screen bg-[#080d19] text-white px-6 py-10">
+      <div className="min-h-screen bg-bg-base text-text-main px-6 py-10">
         <div className="max-w-6xl mx-auto">
 
         <div className="mb-8">
@@ -84,7 +84,7 @@ const StudentDashboard = () => {
             Student Dashboard
           </h1>
 
-          <p className="text-slate-400 mt-2">
+          <p className="text-text-muted mt-2">
             Track your opportunities and applications.
           </p>
         </div>
@@ -92,29 +92,29 @@ const StudentDashboard = () => {
         {/* Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
 
-          <div className="bg-[#0d1424] border border-slate-800 rounded-2xl p-6">
-            <p className="text-slate-400">Total Applications</p>
+          <div className="bg-bg-card border border-border-subtle rounded-2xl p-6">
+            <p className="text-text-muted">Total Applications</p>
             <p className="text-3xl font-bold mt-2">
               {totalApplications}
             </p>
           </div>
 
-          <div className="bg-[#0d1424] border border-slate-800 rounded-2xl p-6">
-            <p className="text-slate-400">Applied</p>
+          <div className="bg-bg-card border border-border-subtle rounded-2xl p-6">
+            <p className="text-text-muted">Applied</p>
             <p className="text-3xl font-bold mt-2 text-blue-400">
               {appliedCount}
             </p>
           </div>
 
-          <div className="bg-[#0d1424] border border-slate-800 rounded-2xl p-6">
-            <p className="text-slate-400">Shortlisted</p>
+          <div className="bg-bg-card border border-border-subtle rounded-2xl p-6">
+            <p className="text-text-muted">Shortlisted</p>
             <p className="text-3xl font-bold mt-2 text-green-400">
               {shortlistedCount}
             </p>
           </div>
 
-          <div className="bg-[#0d1424] border border-slate-800 rounded-2xl p-6">
-            <p className="text-slate-400">Rejected</p>
+          <div className="bg-bg-card border border-border-subtle rounded-2xl p-6">
+            <p className="text-text-muted">Rejected</p>
             <p className="text-3xl font-bold mt-2 text-red-400">
               {rejectedCount}
             </p>
@@ -123,14 +123,14 @@ const StudentDashboard = () => {
         </div>
 
         {/* Recent Applications */}
-        <div className="bg-[#0d1424] border border-slate-800 rounded-2xl p-6">
+        <div className="bg-bg-card border border-border-subtle rounded-2xl p-6">
 
           <h2 className="text-xl font-semibold mb-6">
             Recent Applications
           </h2>
 
           {applications.length === 0 ? (
-            <p className="text-slate-400">
+            <p className="text-text-muted">
               You haven't applied to any opportunities yet.
             </p>
           ) : (
@@ -139,7 +139,7 @@ const StudentDashboard = () => {
               {applications.slice(0, 5).map((application) => (
                 <div
                   key={application.id}
-                  className="border border-slate-800 rounded-xl p-5"
+                  className="border border-border-subtle rounded-xl p-5"
                 >
 
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
@@ -150,12 +150,12 @@ const StudentDashboard = () => {
                           "Unknown Opportunity"}
                       </h3>
 
-                      <p className="text-slate-400 mt-1">
+                      <p className="text-text-muted mt-1">
                         {application.opportunities?.companies?.company_name ||
                           "Unknown Company"}
                       </p>
 
-                      <p className="text-slate-500 text-sm mt-2">
+                      <p className="text-text-main0 text-sm mt-2">
                         Applied on{" "}
                         {new Date(
                           application.applied_at

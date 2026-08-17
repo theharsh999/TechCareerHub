@@ -228,9 +228,9 @@ const OpportunityDetails = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#080d19] text-white px-6 py-10">
+      <div className="min-h-screen bg-bg-base text-text-main px-6 py-10">
         <div className="max-w-5xl mx-auto">
-          <p className="text-slate-400">Loading opportunity...</p>
+          <p className="text-text-muted">Loading opportunity...</p>
         </div>
       </div>
     );
@@ -238,7 +238,7 @@ const OpportunityDetails = () => {
 
   if (error || !opportunity) {
     return (
-      <div className="min-h-screen bg-[#080d19] text-white px-6 py-10">
+      <div className="min-h-screen bg-bg-base text-text-main px-6 py-10">
         <div className="max-w-5xl mx-auto">
           <button
             onClick={() => navigate("/student/opportunities")}
@@ -256,7 +256,7 @@ const OpportunityDetails = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#080d19] text-white px-6 py-10">
+    <div className="min-h-screen bg-bg-base text-text-main px-6 py-10">
       <div className="max-w-5xl mx-auto">
 
         <button
@@ -266,7 +266,7 @@ const OpportunityDetails = () => {
           ← Back to Opportunities
         </button>
 
-        <div className="bg-[#0d1424] border border-slate-800 rounded-2xl p-8">
+        <div className="bg-bg-card border border-border-subtle rounded-2xl p-8">
 
           <h1 className="text-4xl font-bold mb-3">
             {opportunity.title}
@@ -276,24 +276,24 @@ const OpportunityDetails = () => {
             {opportunity.companies?.company_name || "Unknown Company"}
           </p>
 
-          <div className="grid md:grid-cols-2 gap-4 mb-8 text-slate-300">
+          <div className="grid md:grid-cols-2 gap-4 mb-8 text-text-muted">
             <p>
-              <span className="text-slate-500">Type:</span>{" "}
+              <span className="text-text-main0">Type:</span>{" "}
               {opportunity.type}
             </p>
 
             <p>
-              <span className="text-slate-500">Location:</span>{" "}
+              <span className="text-text-main0">Location:</span>{" "}
               {opportunity.location || "Not specified"}
             </p>
 
             <p>
-              <span className="text-slate-500">Mode:</span>{" "}
+              <span className="text-text-main0">Mode:</span>{" "}
               {opportunity.mode || "Not specified"}
             </p>
 
             <p>
-              <span className="text-slate-500">Minimum CGPA:</span>{" "}
+              <span className="text-text-main0">Minimum CGPA:</span>{" "}
               {opportunity.minimum_cgpa || "Not specified"}
             </p>
           </div>
@@ -304,7 +304,7 @@ const OpportunityDetails = () => {
                 Description
               </h2>
 
-              <p className="text-slate-300 leading-7">
+              <p className="text-text-muted leading-7">
                 {opportunity.description}
               </p>
             </div>
@@ -315,11 +315,11 @@ const OpportunityDetails = () => {
               Eligibility Requirements
             </h2>
 
-            <div className="space-y-3 text-slate-300">
+            <div className="space-y-3 text-text-muted">
 
               {opportunity.required_branch?.length > 0 && (
                 <p>
-                  <span className="text-slate-500">
+                  <span className="text-text-main0">
                     Branch:
                   </span>{" "}
                   {opportunity.required_branch.join(", ")}
@@ -328,7 +328,7 @@ const OpportunityDetails = () => {
 
               {opportunity.eligible_years?.length > 0 && (
                 <p>
-                  <span className="text-slate-500">
+                  <span className="text-text-main0">
                     Years:
                   </span>{" "}
                   {opportunity.eligible_years.join(", ")}
@@ -358,13 +358,13 @@ const OpportunityDetails = () => {
           )}
 
           {/* Eligibility Checker & Apply Flow */}
-          <div className="border-t border-slate-800 pt-8">
+          <div className="border-t border-border-subtle pt-8">
             {applicationStatus ? (
               <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-5">
                 <h3 className="text-green-400 text-xl font-semibold capitalize">
                   ✓ Application {applicationStatus.replace('_', ' ')}
                 </h3>
-                <p className="text-slate-300 mt-2">
+                <p className="text-text-muted mt-2">
                   You have already applied for this opportunity.
                 </p>
               </div>
@@ -389,7 +389,7 @@ const OpportunityDetails = () => {
                         <h3 className="text-green-400 text-xl font-semibold">
                           ✓ You are Eligible
                         </h3>
-                        <p className="text-slate-300 mt-2">
+                        <p className="text-text-muted mt-2">
                           You meet all the requirements for this opportunity.
                         </p>
                       </div>
@@ -398,8 +398,8 @@ const OpportunityDetails = () => {
                         <h3 className="text-red-400 text-xl font-semibold">
                           ✕ You are Not Eligible
                         </h3>
-                        <p className="text-slate-300 mt-3 mb-2">Reasons:</p>
-                        <ul className="list-disc list-inside text-slate-300 space-y-1">
+                        <p className="text-text-muted mt-3 mb-2">Reasons:</p>
+                        <ul className="list-disc list-inside text-text-muted space-y-1">
                           {eligibility.reasons.map((reason, index) => (
                             <li key={index}>{reason}</li>
                           ))}
@@ -425,7 +425,7 @@ const OpportunityDetails = () => {
           </div>
 
           {opportunity.application_deadline && (
-            <p className="text-slate-500 mt-8">
+            <p className="text-text-main0 mt-8">
               Deadline:{" "}
               {new Date(
                 opportunity.application_deadline

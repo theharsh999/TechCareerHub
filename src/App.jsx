@@ -15,12 +15,15 @@ import CompanyApplicants from "./pages/company/CompanyApplicants";
 import CompanyProfile from "./pages/company/CompanyProfile";
 
 import TPODashboard from "./pages/tpo/TPODashboard";
+import TPONotifications from "./pages/tpo/TPONotifications";
 import TPOStudents from "./pages/tpo/TPOStudents";
 import { AuthProvider } from "./context/AuthContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 
 function App() {
   return (
+    <ThemeProvider>
     <AuthProvider>
       <BrowserRouter>
         <Routes>
@@ -105,6 +108,13 @@ function App() {
               </ProtectedRoute>
             } />
           <Route
+            path="/tpo/notifications"
+            element={
+              <ProtectedRoute allowedRole="tpo">
+                <TPONotifications />
+              </ProtectedRoute>
+            } />
+          <Route
             path="/tpo/students"
             element={
               <ProtectedRoute allowedRole="tpo">
@@ -121,6 +131,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </AuthProvider>
+    </ThemeProvider>
   );
 }
 

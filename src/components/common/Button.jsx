@@ -8,9 +8,9 @@ const VARIANTS = {
   primary:
     "bg-primary text-white hover:bg-indigo-500 border border-transparent",
   secondary:
-    "bg-slate-800/60 text-slate-200 hover:bg-slate-800 border border-slate-700",
+    "bg-bg-hover/60 text-text-main hover:bg-bg-hover border border-border-subtle",
   ghost:
-    "bg-transparent text-slate-300 hover:text-white border border-transparent",
+    "bg-transparent text-text-muted hover:text-white border border-transparent",
   danger:
     "bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 border border-rose-500/30",
 };

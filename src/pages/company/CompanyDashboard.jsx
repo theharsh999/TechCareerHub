@@ -40,8 +40,8 @@ export default function CompanyDashboard() {
       <div className="flex flex-col gap-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-xl font-semibold text-white">Company Dashboard</h1>
-            <p className="text-sm text-slate-400 mt-0.5">
+            <h1 className="text-xl font-semibold text-text-main">Company Dashboard</h1>
+            <p className="text-sm text-text-muted mt-0.5">
               Manage your opportunities and review applicants
             </p>
           </div>

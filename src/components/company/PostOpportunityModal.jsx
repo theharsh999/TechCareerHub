@@ -39,12 +39,12 @@ export default function PostOpportunityModal({ open, onClose, onSubmit }) {
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={onClose}
       />
-      <div className="relative w-full max-w-md rounded-2xl border border-slate-800 bg-[#111622] p-5">
+      <div className="relative w-full max-w-md rounded-2xl border border-border-subtle bg-bg-card p-5">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-white font-semibold text-sm">Post New Opportunity</h3>
+          <h3 className="text-text-main font-semibold text-sm">Post New Opportunity</h3>
           <button
             onClick={onClose}
-            className="text-slate-500 hover:text-slate-300"
+            className="text-text-main0 hover:text-text-muted"
             aria-label="Close"
           >
             <X size={18} />
@@ -53,23 +53,23 @@ export default function PostOpportunityModal({ open, onClose, onSubmit }) {
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">
-            <label className="text-xs text-slate-400">Role title</label>
+            <label className="text-xs text-text-muted">Role title</label>
             <input
               value={form.title}
               onChange={update("title")}
               placeholder="e.g. Frontend Developer Intern"
-              className="bg-slate-900/60 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-primary"
+              className="bg-bg-card/60 border border-border-subtle rounded-lg px-3 py-2 text-sm text-text-main focus:outline-none focus:border-primary"
               required
             />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div className="flex flex-col gap-1">
-              <label className="text-xs text-slate-400">Type</label>
+              <label className="text-xs text-text-muted">Type</label>
               <select
                 value={form.type}
                 onChange={update("type")}
-                className="bg-slate-900/60 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-primary"
+                className="bg-bg-card/60 border border-border-subtle rounded-lg px-3 py-2 text-sm text-text-main focus:outline-none focus:border-primary"
               >
                 {TYPES.map((t) => (
                   <option key={t} value={t}>{t}</option>
@@ -77,33 +77,33 @@ export default function PostOpportunityModal({ open, onClose, onSubmit }) {
               </select>
             </div>
             <div className="flex flex-col gap-1">
-              <label className="text-xs text-slate-400">Location</label>
+              <label className="text-xs text-text-muted">Location</label>
               <input
                 value={form.location}
                 onChange={update("location")}
                 placeholder="Remote / City"
-                className="bg-slate-900/60 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-primary"
+                className="bg-bg-card/60 border border-border-subtle rounded-lg px-3 py-2 text-sm text-text-main focus:outline-none focus:border-primary"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div className="flex flex-col gap-1">
-              <label className="text-xs text-slate-400">Stipend / CTC</label>
+              <label className="text-xs text-text-muted">Stipend / CTC</label>
               <input
                 value={form.stipend}
                 onChange={update("stipend")}
                 placeholder="₹25,000/mo or 6 LPA"
-                className="bg-slate-900/60 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-primary"
+                className="bg-bg-card/60 border border-border-subtle rounded-lg px-3 py-2 text-sm text-text-main focus:outline-none focus:border-primary"
               />
             </div>
             <div className="flex flex-col gap-1">
-              <label className="text-xs text-slate-400">Deadline</label>
+              <label className="text-xs text-text-muted">Deadline</label>
               <input
                 type="date"
                 value={form.deadline}
                 onChange={update("deadline")}
-                className="bg-slate-900/60 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-primary"
+                className="bg-bg-card/60 border border-border-subtle rounded-lg px-3 py-2 text-sm text-text-main focus:outline-none focus:border-primary"
                 required
               />
             </div>

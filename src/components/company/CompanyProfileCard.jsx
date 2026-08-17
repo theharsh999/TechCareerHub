@@ -19,9 +19,9 @@ export default function CompanyProfileCard({ profile }) {
           {profile.logoInitials}
         </div>
         <div className="min-w-0">
-          <h2 className="text-white font-semibold">{profile.name}</h2>
-          <p className="text-sm text-slate-400">{profile.industry}</p>
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-xs text-slate-500">
+          <h2 className="text-text-main font-semibold">{profile.name}</h2>
+          <p className="text-sm text-text-muted">{profile.industry}</p>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-xs text-text-main0">
             <span className="flex items-center gap-1">
               <MapPin size={12} /> {profile.location}
             </span>
@@ -32,16 +32,16 @@ export default function CompanyProfileCard({ profile }) {
         </div>
       </div>
 
-      <p className="text-sm text-slate-400 mt-4 leading-relaxed">{profile.about}</p>
+      <p className="text-sm text-text-muted mt-4 leading-relaxed">{profile.about}</p>
 
-      <div className="grid grid-cols-3 gap-3 mt-5 pt-4 border-t border-slate-800/80">
+      <div className="grid grid-cols-3 gap-3 mt-5 pt-4 border-t border-border-subtle">
         {stats.map((s) => (
           <div key={s.label} className="flex flex-col gap-1">
-            <div className="flex items-center gap-1.5 text-slate-500 text-xs">
+            <div className="flex items-center gap-1.5 text-text-main0 text-xs">
               <s.icon size={12} />
               {s.label}
             </div>
-            <span className="text-lg font-semibold text-white">{s.value}</span>
+            <span className="text-lg font-semibold text-text-main">{s.value}</span>
           </div>
         ))}
       </div>

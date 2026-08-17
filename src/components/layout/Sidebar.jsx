@@ -17,7 +17,7 @@ const SECTIONS = {
   tpo: [
     { to: "/tpo/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { to: "/tpo/students", label: "Students", icon: Users },
-    { to: "/tpo/dashboard", label: "Notifications", icon: Bell },
+    { to: "/tpo/notifications", label: "Notifications", icon: Bell },
   ],
   company: [
     { to: "/company/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -33,7 +33,7 @@ export default function Sidebar() {
   const items = SECTIONS[section];
 
   return (
-    <aside className="w-56 shrink-0 border-r border-slate-800/80 bg-[#0B0F19] px-3 py-4 hidden md:flex md:flex-col gap-1">
+    <aside className="w-56 shrink-0 border-r border-border-subtle bg-bg-base px-3 py-4 hidden md:flex md:flex-col gap-1">
       {items.map((item, i) => (
         <Link
           key={item.label + i}
@@ -41,7 +41,7 @@ export default function Sidebar() {
           className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors ${
             location.pathname === item.to
               ? "bg-primary/10 text-primary font-medium"
-              : "text-slate-400 hover:text-white hover:bg-slate-800/50"
+              : "text-text-muted hover:text-text-main hover:bg-bg-hover/50"
           }`}
         >
           <item.icon size={16} />

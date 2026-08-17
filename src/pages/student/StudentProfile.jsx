@@ -316,7 +316,7 @@ const StudentProfile = () => {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-[#0B0F19] text-slate-400 flex items-center justify-center">
+            <div className="min-h-screen bg-bg-base text-text-muted flex items-center justify-center">
                 Loading profile...
             </div>
         );
@@ -340,7 +340,7 @@ const StudentProfile = () => {
                                 Student Profile
                             </h1>
 
-                            <p className="text-slate-400 mt-1">
+                            <p className="text-text-muted mt-1">
                                 Keep your profile updated to get better opportunities.
                             </p>
                         </div>
@@ -359,26 +359,26 @@ const StudentProfile = () => {
                             <div className="grid md:grid-cols-2 gap-4">
 
                                 <div>
-                                    <label className="block text-sm text-slate-300 mb-2">
+                                    <label className="block text-sm text-text-muted mb-2">
                                         Full Name
                                     </label>
 
                                     <input
                                         value={profile?.full_name || ""}
                                         disabled
-                                        className="w-full rounded-lg border border-slate-700 bg-slate-800/60 px-3 py-2.5 text-slate-400"
+                                        className="w-full rounded-lg border border-border-subtle bg-bg-hover/60 px-3 py-2.5 text-text-muted"
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm text-slate-300 mb-2">
+                                    <label className="block text-sm text-text-muted mb-2">
                                         Email
                                     </label>
 
                                     <input
                                         value={profile?.email || ""}
                                         disabled
-                                        className="w-full rounded-lg border border-slate-700 bg-slate-800/60 px-3 py-2.5 text-slate-400"
+                                        className="w-full rounded-lg border border-border-subtle bg-bg-hover/60 px-3 py-2.5 text-text-muted"
                                     />
                                 </div>
 
@@ -391,7 +391,7 @@ const StudentProfile = () => {
                                 Resume
                             </h2>
 
-                            <div className="rounded-xl border border-slate-700 bg-slate-900 p-5">
+                            <div className="rounded-xl border border-border-subtle bg-bg-card p-5">
                                 <div className="flex flex-wrap items-center gap-4">
 
                                     <label className="cursor-pointer rounded-lg bg-indigo-600 px-4 py-2.5 font-medium hover:bg-indigo-500">
@@ -436,7 +436,7 @@ const StudentProfile = () => {
                                 </div>
 
                                 {resumeMessage && (
-                                    <p className="mt-3 text-sm text-slate-300">
+                                    <p className="mt-3 text-sm text-text-muted">
                                         {resumeMessage}
                                     </p>
                                 )}
@@ -446,7 +446,7 @@ const StudentProfile = () => {
                                         <iframe
                                             src={resume}
                                             title="Resume Preview"
-                                            className="w-full h-[600px] rounded-lg border border-slate-700"
+                                            className="w-full h-[600px] rounded-lg border border-border-subtle"
                                         />
                                     </div>
                                 )}
@@ -462,7 +462,7 @@ const StudentProfile = () => {
                             <div className="grid md:grid-cols-2 gap-4">
 
                                 <div>
-                                    <label className="block text-sm text-slate-300 mb-2">
+                                    <label className="block text-sm text-text-muted mb-2">
                                         Roll Number
                                     </label>
 
@@ -471,12 +471,12 @@ const StudentProfile = () => {
                                         value={form.roll_no}
                                         onChange={handleChange}
                                         placeholder="e.g. 21BCE1010"
-                                        className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2.5 outline-none focus:border-indigo-500"
+                                        className="w-full rounded-lg border border-border-subtle bg-bg-card px-3 py-2.5 outline-none focus:border-indigo-500"
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm text-slate-300 mb-2">
+                                    <label className="block text-sm text-text-muted mb-2">
                                         Branch
                                     </label>
 
@@ -485,12 +485,12 @@ const StudentProfile = () => {
                                         value={form.branch}
                                         onChange={handleChange}
                                         placeholder="e.g. Information Technology"
-                                        className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2.5 outline-none focus:border-indigo-500"
+                                        className="w-full rounded-lg border border-border-subtle bg-bg-card px-3 py-2.5 outline-none focus:border-indigo-500"
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm text-slate-300 mb-2">
+                                    <label className="block text-sm text-text-muted mb-2">
                                         Academic Year
                                     </label>
 
@@ -498,7 +498,7 @@ const StudentProfile = () => {
                                         name="academic_year"
                                         value={form.academic_year}
                                         onChange={handleChange}
-                                        className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2.5 outline-none focus:border-indigo-500"
+                                        className="w-full rounded-lg border border-border-subtle bg-bg-card px-3 py-2.5 outline-none focus:border-indigo-500"
                                     >
                                         <option value="">Select year</option>
                                         <option value="1st Year">1st Year</option>
@@ -509,7 +509,7 @@ const StudentProfile = () => {
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm text-slate-300 mb-2">
+                                    <label className="block text-sm text-text-muted mb-2">
                                         CGPA
                                     </label>
 
@@ -522,12 +522,12 @@ const StudentProfile = () => {
                                         max="10"
                                         step="0.01"
                                         placeholder="e.g. 8.75"
-                                        className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2.5 outline-none focus:border-indigo-500"
+                                        className="w-full rounded-lg border border-border-subtle bg-bg-card px-3 py-2.5 outline-none focus:border-indigo-500"
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm text-slate-300 mb-2">
+                                    <label className="block text-sm text-text-muted mb-2">
                                         Location
                                     </label>
 
@@ -536,7 +536,7 @@ const StudentProfile = () => {
                                         value={form.location}
                                         onChange={handleChange}
                                         placeholder="e.g. Mumbai"
-                                        className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2.5 outline-none focus:border-indigo-500"
+                                        className="w-full rounded-lg border border-border-subtle bg-bg-card px-3 py-2.5 outline-none focus:border-indigo-500"
                                     />
                                 </div>
 
@@ -545,7 +545,7 @@ const StudentProfile = () => {
 
                         {/* Bio */}
                         <div>
-                            <label className="block text-sm text-slate-300 mb-2">
+                            <label className="block text-sm text-text-muted mb-2">
                                 About You
                             </label>
 
@@ -555,7 +555,7 @@ const StudentProfile = () => {
                                 onChange={handleChange}
                                 rows="4"
                                 placeholder="Tell companies a little about yourself..."
-                                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2.5 outline-none focus:border-indigo-500 resize-none"
+                                className="w-full rounded-lg border border-border-subtle bg-bg-card px-3 py-2.5 outline-none focus:border-indigo-500 resize-none"
                             />
                         </div>
 
@@ -566,7 +566,7 @@ const StudentProfile = () => {
                                     <h2 className="text-lg font-semibold mb-1">
                                         Skills & Expertise
                                     </h2>
-                                    <p className="text-sm text-slate-400">
+                                    <p className="text-sm text-text-muted">
                                         Showcase your strongest skills so recruiters can spot your expertise quickly.
                                     </p>
                                 </div>
@@ -574,7 +574,7 @@ const StudentProfile = () => {
 
                             <div className="mt-4 grid gap-3 md:grid-cols-[1.8fr_1fr_auto]">
                                 <div className="relative">
-                                    <label className="block text-sm text-slate-300 mb-2">
+                                    <label className="block text-sm text-text-muted mb-2">
                                         Search skills
                                     </label>
 
@@ -583,30 +583,30 @@ const StudentProfile = () => {
                                         onChange={handleSkillSearchChange}
                                         placeholder="Search skills..."
                                         disabled={!!skillsError}
-                                        className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2.5 outline-none focus:border-indigo-500 disabled:cursor-not-allowed disabled:opacity-60"
+                                        className="w-full rounded-lg border border-border-subtle bg-bg-card px-3 py-2.5 outline-none focus:border-indigo-500 disabled:cursor-not-allowed disabled:opacity-60"
                                     />
 
                                     {selectedSkill && (
-                                        <p className="mt-2 text-sm text-slate-400">
+                                        <p className="mt-2 text-sm text-text-muted">
                                             Selected skill: <span className="font-medium text-slate-100">{selectedSkill.name}</span>
                                         </p>
                                     )}
 
                                     {skillSearch && !selectedSkill && filteredSkillOptions.length > 0 && (
-                                        <div className="absolute z-10 mt-1 w-full overflow-hidden rounded-2xl border border-slate-700 bg-slate-950/95 shadow-xl">
+                                        <div className="absolute z-10 mt-1 w-full overflow-hidden rounded-2xl border border-border-subtle bg-slate-950/95 shadow-xl">
                                             {filteredSkillOptions.map((skill) => (
                                                 <button
                                                     key={skill.id}
                                                     type="button"
                                                     onClick={() => handleSelectSkill(skill)}
-                                                    className="flex w-full items-center justify-between gap-2 px-3 py-3 text-left text-sm text-slate-200 transition-colors hover:bg-slate-800"
+                                                    className="flex w-full items-center justify-between gap-2 px-3 py-3 text-left text-sm text-text-main transition-colors hover:bg-bg-hover"
                                                 >
                                                     <span>{skill.name}</span>
-                                                    <span className="text-slate-500">{skill.category}</span>
+                                                    <span className="text-text-main0">{skill.category}</span>
                                                 </button>
                                             ))}
                                             {allSkills.filter((skill) => skill.name.toLowerCase().includes(skillSearch.trim().toLowerCase())).length > 6 && (
-                                                <div className="px-3 py-2 text-xs text-slate-500">
+                                                <div className="px-3 py-2 text-xs text-text-main0">
                                                     Showing top 6 results. Keep typing to narrow the list.
                                                 </div>
                                             )}
@@ -614,21 +614,21 @@ const StudentProfile = () => {
                                     )}
 
                                     {!skillsLoading && skillSearch && filteredSkillOptions.length === 0 && !skillsError && (
-                                        <div className="absolute z-10 mt-1 w-full rounded-2xl border border-slate-700 bg-slate-950/95 px-3 py-3 text-sm text-slate-400">
+                                        <div className="absolute z-10 mt-1 w-full rounded-2xl border border-border-subtle bg-slate-950/95 px-3 py-3 text-sm text-text-muted">
                                             No matching skills found. Try another keyword.
                                         </div>
                                     )}
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm text-slate-300 mb-2">
+                                    <label className="block text-sm text-text-muted mb-2">
                                         Proficiency
                                     </label>
 
                                     <select
                                         value={selectedProficiency}
                                         onChange={(e) => setSelectedProficiency(e.target.value)}
-                                        className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2.5 outline-none focus:border-indigo-500"
+                                        className="w-full rounded-lg border border-border-subtle bg-bg-card px-3 py-2.5 outline-none focus:border-indigo-500"
                                     >
                                         <option value="">Select proficiency</option>
                                         {proficiencyOptions.map((level) => (
@@ -665,11 +665,11 @@ const StudentProfile = () => {
 
                             <div className="mt-6">
                                 {skillsLoading ? (
-                                    <div className="rounded-2xl border border-slate-700 bg-slate-950/80 p-5 text-sm text-slate-400">
+                                    <div className="rounded-2xl border border-border-subtle bg-slate-950/80 p-5 text-sm text-text-muted">
                                         Loading skills...
                                     </div>
                                 ) : studentSkills.length === 0 ? (
-                                    <div className="rounded-2xl border border-slate-700 bg-slate-950/80 p-5 text-sm text-slate-400">
+                                    <div className="rounded-2xl border border-border-subtle bg-slate-950/80 p-5 text-sm text-text-muted">
                                         You haven’t added any skills yet. Start by searching for a skill and selecting your proficiency.
                                     </div>
                                 ) : (
@@ -677,14 +677,14 @@ const StudentProfile = () => {
                                         {studentSkills.map((item) => (
                                             <div
                                                 key={item.skill_id}
-                                                className="rounded-2xl border border-slate-700 bg-slate-950/80 p-4"
+                                                className="rounded-2xl border border-border-subtle bg-slate-950/80 p-4"
                                             >
                                                 <div className="flex items-start justify-between gap-3">
                                                     <div>
                                                         <p className="font-semibold text-slate-100">
                                                             {item.skill?.name || "Unknown skill"}
                                                         </p>
-                                                        <p className="text-sm text-slate-500">
+                                                        <p className="text-sm text-text-main0">
                                                             {item.skill?.category || "General"}
                                                         </p>
                                                     </div>
@@ -693,14 +693,14 @@ const StudentProfile = () => {
                                                         type="button"
                                                         onClick={() => handleRemoveSkill(item.skill_id)}
                                                         disabled={removingSkillId === item.skill_id}
-                                                        className="rounded-lg border border-slate-700 bg-slate-900 px-2.5 py-2 text-slate-300 transition-colors hover:border-red-400 hover:text-red-300 disabled:cursor-not-allowed disabled:opacity-60"
+                                                        className="rounded-lg border border-border-subtle bg-bg-card px-2.5 py-2 text-text-muted transition-colors hover:border-red-400 hover:text-red-300 disabled:cursor-not-allowed disabled:opacity-60"
                                                     >
                                                         <X size={16} />
                                                     </button>
                                                 </div>
 
-                                                <div className="mt-4 flex items-center justify-between gap-3 rounded-xl bg-slate-900/70 px-3 py-3">
-                                                    <span className="text-sm text-slate-300">{getProficiencyLabel(item.proficiency)}</span>
+                                                <div className="mt-4 flex items-center justify-between gap-3 rounded-xl bg-bg-card/70 px-3 py-3">
+                                                    <span className="text-sm text-text-muted">{getProficiencyLabel(item.proficiency)}</span>
                                                     <span className="rounded-full bg-indigo-500/10 px-2.5 py-1 text-xs uppercase tracking-[0.15em] text-indigo-300">
                                                         {getProficiencyLabel(item.proficiency)}
                                                     </span>

@@ -69,7 +69,7 @@ const Opportunities = () => {
   return (
     <>
       <StudentNavbar />
-      <div className="min-h-screen bg-[#080d19] text-white px-6 py-10">
+      <div className="min-h-screen bg-bg-base text-text-main px-6 py-10">
         <div className="max-w-6xl mx-auto">
 
         {/* Header */}
@@ -78,7 +78,7 @@ const Opportunities = () => {
             Opportunities
           </h1>
 
-          <p className="text-slate-400 mt-2 text-lg">
+          <p className="text-text-muted mt-2 text-lg">
             Find internships, jobs and other career opportunities.
           </p>
         </div>
@@ -89,12 +89,12 @@ const Opportunities = () => {
           placeholder="Search opportunities..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full bg-[#111a2c] border border-slate-700 rounded-xl px-5 py-4 text-lg outline-none focus:border-purple-500 mb-8"
+          className="w-full bg-bg-card border border-border-subtle rounded-xl px-5 py-4 text-lg outline-none focus:border-purple-500 mb-8"
         />
 
         {/* Loading */}
         {loading && (
-          <p className="text-slate-400">
+          <p className="text-text-muted">
             Loading opportunities...
           </p>
         )}
@@ -108,8 +108,8 @@ const Opportunities = () => {
 
         {/* No opportunities */}
         {!loading && !error && filteredOpportunities.length === 0 && (
-          <div className="bg-[#0d1424] border border-slate-800 rounded-xl p-8 text-center">
-            <p className="text-slate-400">
+          <div className="bg-bg-card border border-border-subtle rounded-xl p-8 text-center">
+            <p className="text-text-muted">
               No opportunities found.
             </p>
           </div>
@@ -125,7 +125,7 @@ const Opportunities = () => {
                 onClick={() =>
                   navigate(`/student/opportunities/${opportunity.id}`)
                 }
-                className="bg-[#0d1424] border border-slate-800 rounded-2xl p-6 cursor-pointer hover:border-purple-500 transition"
+                className="bg-bg-card border border-border-subtle rounded-2xl p-6 cursor-pointer hover:border-purple-500 transition"
               >
 
                 {/* Title */}
@@ -146,25 +146,25 @@ const Opportunities = () => {
                 </p>
 
                 {/* Details */}
-                <div className="space-y-2 text-slate-300">
+                <div className="space-y-2 text-text-muted">
 
                   <p>
-                    <span className="text-slate-500">Type:</span>{" "}
+                    <span className="text-text-main0">Type:</span>{" "}
                     {opportunity.type}
                   </p>
 
                   <p>
-                    <span className="text-slate-500">Location:</span>{" "}
+                    <span className="text-text-main0">Location:</span>{" "}
                     {opportunity.location || "Not specified"}
                   </p>
 
                   <p>
-                    <span className="text-slate-500">Mode:</span>{" "}
+                    <span className="text-text-main0">Mode:</span>{" "}
                     {opportunity.mode || "Not specified"}
                   </p>
 
                   <p>
-                    <span className="text-slate-500">Minimum CGPA:</span>{" "}
+                    <span className="text-text-main0">Minimum CGPA:</span>{" "}
                     {opportunity.minimum_cgpa || "Not specified"}
                   </p>
 
@@ -186,7 +186,7 @@ const Opportunities = () => {
 
                 {/* Deadline */}
                 {opportunity.application_deadline && (
-                  <p className="text-slate-500 text-sm mt-5">
+                  <p className="text-text-main0 text-sm mt-5">
                     Deadline:{" "}
                     {new Date(
                       opportunity.application_deadline

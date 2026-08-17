@@ -14,7 +14,7 @@ import { APPLICATION_STATUSES } from "../../constants/tpoMockData";
 const STATUS_STYLES = {
   [APPLICATION_STATUSES.APPLIED]: {
     variant: "default",
-    className: "bg-slate-500/10 text-slate-300 border border-slate-500/30",
+    className: "bg-slate-500/10 text-text-muted border border-slate-500/30",
   },
   [APPLICATION_STATUSES.SHORTLISTED]: {
     variant: "info",
@@ -65,12 +65,12 @@ function isDeadlineSoon(deadline) {
 
 export default function ApplicationsOverviewTable({ applications = [] }) {
   return (
-    <Card className="bg-[#11162277] border border-slate-800/80 rounded-2xl overflow-hidden">
-      <div className="flex items-center justify-between px-5 py-4 border-b border-slate-800/80">
-        <h3 className="text-sm font-semibold text-white">
+    <Card className="bg-bg-card border border-border-subtle rounded-2xl overflow-hidden">
+      <div className="flex items-center justify-between px-5 py-4 border-b border-border-subtle">
+        <h3 className="text-sm font-semibold text-text-main">
           Recent Applications
         </h3>
-        <span className="text-xs text-slate-500">
+        <span className="text-xs text-text-main0">
           {applications.length} shown
         </span>
       </div>
@@ -78,7 +78,7 @@ export default function ApplicationsOverviewTable({ applications = [] }) {
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="text-left text-xs text-slate-500 border-b border-slate-800/80">
+            <tr className="text-left text-xs text-text-main0 border-b border-border-subtle">
               <th className="px-5 py-3 font-medium">Student</th>
               <th className="px-5 py-3 font-medium">Company / Role</th>
               <th className="px-5 py-3 font-medium">Applied</th>
@@ -90,19 +90,19 @@ export default function ApplicationsOverviewTable({ applications = [] }) {
             {applications.map((app) => (
               <tr
                 key={app.id}
-                className="border-b border-slate-800/50 last:border-0 hover:bg-slate-800/30 transition-colors"
+                className="border-b border-border-subtle/50 last:border-0 hover:bg-bg-hover/30 transition-colors"
               >
                 <td className="px-5 py-3">
-                  <div className="text-slate-200 font-medium">
+                  <div className="text-text-main font-medium">
                     {app.studentName}
                   </div>
-                  <div className="text-xs text-slate-500">{app.rollNo}</div>
+                  <div className="text-xs text-text-main0">{app.rollNo}</div>
                 </td>
                 <td className="px-5 py-3">
-                  <div className="text-slate-300">{app.company}</div>
-                  <div className="text-xs text-slate-500">{app.role}</div>
+                  <div className="text-text-muted">{app.company}</div>
+                  <div className="text-xs text-text-main0">{app.role}</div>
                 </td>
-                <td className="px-5 py-3 text-slate-400">
+                <td className="px-5 py-3 text-text-muted">
                   {formatDate(app.appliedDate)}
                 </td>
                 <td className="px-5 py-3">
@@ -110,7 +110,7 @@ export default function ApplicationsOverviewTable({ applications = [] }) {
                     className={
                       isDeadlineSoon(app.deadline)
                         ? "text-amber-400 font-medium"
-                        : "text-slate-400"
+                        : "text-text-muted"
                     }
                   >
                     {formatDate(app.deadline)}
@@ -126,7 +126,7 @@ export default function ApplicationsOverviewTable({ applications = [] }) {
               <tr>
                 <td
                   colSpan={5}
-                  className="px-5 py-8 text-center text-slate-500 text-sm"
+                  className="px-5 py-8 text-center text-text-main0 text-sm"
                 >
                   No applications yet.
                 </td>

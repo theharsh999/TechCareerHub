@@ -25,14 +25,14 @@ export default function StatCard({
   trendValue,
 }) {
   return (
-    <Card className="p-5 bg-[#11162277] border border-slate-800/80 rounded-2xl hover:border-indigo-500/40 transition-colors">
+    <Card className="p-5 bg-bg-card border border-border-subtle rounded-2xl hover:border-indigo-500/40 transition-colors">
       <div className="flex items-start justify-between">
         <div className="flex flex-col gap-1">
-          <span className="text-sm text-slate-400">{label}</span>
-          <span className="text-2xl font-semibold text-white tracking-tight">
+          <span className="text-sm text-text-muted">{label}</span>
+          <span className="text-2xl font-semibold text-text-main tracking-tight">
             {value}
           </span>
-          {hint && <span className="text-xs text-slate-500">{hint}</span>}
+          {hint && <span className="text-xs text-text-main0">{hint}</span>}
         </div>
         {Icon && (
           <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400">

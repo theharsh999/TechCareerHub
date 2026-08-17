@@ -73,15 +73,15 @@ const StudentApplications = () => {
         return "bg-red-500/10 text-red-400 border-red-500/30";
 
       default:
-        return "bg-slate-500/10 text-slate-300 border-slate-500/30";
+        return "bg-slate-500/10 text-text-muted border-slate-500/30";
     }
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#080d19] text-white px-6 py-10">
+      <div className="min-h-screen bg-bg-base text-text-main px-6 py-10">
         <div className="max-w-6xl mx-auto">
-          <p className="text-slate-400">Loading applications...</p>
+          <p className="text-text-muted">Loading applications...</p>
         </div>
       </div>
     );
@@ -90,7 +90,7 @@ const StudentApplications = () => {
   return (
     <>
       <StudentNavbar />
-      <div className="min-h-screen bg-[#080d19] text-white px-6 py-10">
+      <div className="min-h-screen bg-bg-base text-text-main px-6 py-10">
         <div className="max-w-6xl mx-auto">
 
         {/* Header */}
@@ -106,7 +106,7 @@ const StudentApplications = () => {
             My Applications
           </h1>
 
-          <p className="text-slate-400">
+          <p className="text-text-muted">
             Track all your job and internship applications.
           </p>
         </div>
@@ -120,12 +120,12 @@ const StudentApplications = () => {
 
         {/* Empty State */}
         {!error && applications.length === 0 && (
-          <div className="bg-[#0d1424] border border-slate-800 rounded-2xl p-8 text-center">
+          <div className="bg-bg-card border border-border-subtle rounded-2xl p-8 text-center">
             <h2 className="text-2xl font-semibold mb-3">
               No Applications Yet
             </h2>
 
-            <p className="text-slate-400 mb-6">
+            <p className="text-text-muted mb-6">
               You haven't applied to any opportunities yet.
             </p>
 
@@ -146,7 +146,7 @@ const StudentApplications = () => {
             return (
               <div
                 key={application.id}
-                className="bg-[#0d1424] border border-slate-800 rounded-2xl p-6"
+                className="bg-bg-card border border-border-subtle rounded-2xl p-6"
               >
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-5">
 
@@ -161,11 +161,11 @@ const StudentApplications = () => {
                         "Unknown Company"}
                     </p>
 
-                    <div className="space-y-2 text-slate-300">
+                    <div className="space-y-2 text-text-muted">
 
                       {opportunity?.type && (
                         <p>
-                          <span className="text-slate-500">
+                          <span className="text-text-main0">
                             Type:
                           </span>{" "}
                           {opportunity.type}
@@ -174,7 +174,7 @@ const StudentApplications = () => {
 
                       {opportunity?.location && (
                         <p>
-                          <span className="text-slate-500">
+                          <span className="text-text-main0">
                             Location:
                           </span>{" "}
                           {opportunity.location}
@@ -183,7 +183,7 @@ const StudentApplications = () => {
 
                       {opportunity?.mode && (
                         <p>
-                          <span className="text-slate-500">
+                          <span className="text-text-main0">
                             Mode:
                           </span>{" "}
                           {opportunity.mode}
@@ -192,7 +192,7 @@ const StudentApplications = () => {
 
                       {application.applied_at && (
                         <p>
-                          <span className="text-slate-500">
+                          <span className="text-text-main0">
                             Applied on:
                           </span>{" "}
                           {new Date(
@@ -203,7 +203,7 @@ const StudentApplications = () => {
 
                       {application.match_percentage !== null && (
                         <p>
-                          <span className="text-slate-500">
+                          <span className="text-text-main0">
                             Match:
                           </span>{" "}
                           {application.match_percentage}%
@@ -227,7 +227,7 @@ const StudentApplications = () => {
 
                 {/* View Opportunity */}
                 {opportunity?.id && (
-                  <div className="mt-6 pt-5 border-t border-slate-800">
+                  <div className="mt-6 pt-5 border-t border-border-subtle">
                     <button
                       onClick={() =>
                         navigate(

@@ -9,6 +9,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { Briefcase, LogOut } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
+import ThemeToggle from "../common/ThemeToggle";
 
 export default function Navbar() {
   const location = useLocation();
@@ -21,18 +22,19 @@ export default function Navbar() {
   };
 
   return (
-    <header className="h-16 shrink-0 border-b border-slate-800/80 bg-[#0B0F19]/95 backdrop-blur flex items-center justify-between px-6">
+    <header className="h-16 shrink-0 border-b border-border-subtle bg-bg-base backdrop-blur flex items-center justify-between px-6">
       <div className="flex items-center gap-2">
         <div className="p-1.5 rounded-lg bg-primary/10 text-primary">
           <Briefcase size={18} />
         </div>
-        <span className="text-white font-semibold text-sm">TechCareerHub</span>
+        <span className="text-text-main font-semibold text-sm">TechCareerHub</span>
       </div>
 
-      <nav className="flex items-center gap-1">
+      <nav className="flex items-center gap-3">
+        <ThemeToggle />
         <button
           onClick={handleLogout}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium text-text-muted hover:text-text-main hover:bg-bg-hover transition-colors"
         >
           <LogOut size={16} />
           Logout

@@ -64,7 +64,7 @@ function Login() {
     };
 
     return (
-        <div className="min-h-screen bg-[#080B14] flex flex-col items-center justify-center p-4 sm:p-6 relative overflow-hidden">
+        <div className="min-h-screen bg-bg-base flex flex-col items-center justify-center p-4 sm:p-6 relative overflow-hidden">
             
             {/* Background Glows */}
             <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none"></div>
@@ -73,18 +73,18 @@ function Login() {
             <div className="w-full max-w-[420px] relative z-10">
                 {/* Header Section */}
                 <div className="text-center mb-8">
-                    <h1 className="text-3xl font-bold text-white tracking-tight mb-2">Welcome back</h1>
-                    <p className="text-slate-400 text-sm">
+                    <h1 className="text-3xl font-bold text-text-main tracking-tight mb-2">Welcome back</h1>
+                    <p className="text-text-muted text-sm">
                         Sign in to your TechCareerHub account
                     </p>
                 </div>
 
                 {/* Card Container */}
-                <div className="bg-[#111827]/80 backdrop-blur-xl border border-slate-800/80 shadow-2xl rounded-2xl p-6 sm:p-8">
+                <div className="bg-bg-card backdrop-blur-xl border border-border-subtle shadow-2xl rounded-2xl p-6 sm:p-8">
                     <form onSubmit={handleLogin} className="space-y-5">
                         
                         <div>
-                            <label className="block text-sm font-medium text-slate-300 mb-1.5">
+                            <label className="block text-sm font-medium text-text-muted mb-1.5">
                                 Email Address
                             </label>
                             <input
@@ -94,13 +94,13 @@ function Login() {
                                 onChange={handleChange}
                                 required
                                 placeholder="you@example.com"
-                                className="w-full rounded-xl border border-slate-700/60 bg-[#0B0F19]/50 px-4 py-3 text-slate-200 placeholder-slate-500 outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-200"
+                                className="w-full rounded-xl border border-border-subtle bg-bg-base px-4 py-3 text-text-main placeholder-slate-500 outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-200"
                             />
                         </div>
 
                         <div>
                             <div className="flex items-center justify-between mb-1.5">
-                                <label className="block text-sm font-medium text-slate-300">
+                                <label className="block text-sm font-medium text-text-muted">
                                     Password
                                 </label>
                             </div>
@@ -111,7 +111,7 @@ function Login() {
                                 onChange={handleChange}
                                 required
                                 placeholder="••••••••"
-                                className="w-full rounded-xl border border-slate-700/60 bg-[#0B0F19]/50 px-4 py-3 text-slate-200 placeholder-slate-500 outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-200"
+                                className="w-full rounded-xl border border-border-subtle bg-bg-base px-4 py-3 text-text-main placeholder-slate-500 outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-200"
                             />
                         </div>
 
@@ -133,7 +133,7 @@ function Login() {
                     </form>
 
                     <div className="mt-6 text-center">
-                        <p className="text-sm text-slate-400">
+                        <p className="text-sm text-text-muted">
                             Don't have an account?{" "}
                             <Link
                                 to="/signup"

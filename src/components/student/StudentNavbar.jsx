@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "../../lib/supabase";
+import ThemeToggle from "../common/ThemeToggle";
 
 const StudentNavbar = () => {
   const navigate = useNavigate();
@@ -27,13 +28,13 @@ const StudentNavbar = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-slate-800 bg-[#080d19]/95 backdrop-blur">
+    <nav className="sticky top-0 z-50 border-b border-border-subtle bg-bg-base backdrop-blur">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center">
 
         {/* Logo */}
         <button
           onClick={() => navigate("/student/dashboard")}
-          className="text-xl font-bold text-white"
+          className="text-xl font-bold text-text-main"
         >
           TechCareerHub
         </button>
@@ -51,7 +52,7 @@ const StudentNavbar = () => {
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
                     active
                       ? "bg-purple-600 text-white"
-                      : "text-slate-400 hover:text-white hover:bg-slate-800"
+                      : "text-text-muted hover:text-text-main hover:bg-bg-hover"
                   }`}
                 >
                   {item.name}
@@ -63,6 +64,8 @@ const StudentNavbar = () => {
 
         {/* Right Side */}
         <div className="flex items-center gap-3">
+          
+          <ThemeToggle />
 
           {/* Profile */}
           <button
@@ -70,7 +73,7 @@ const StudentNavbar = () => {
             className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
               location.pathname === "/student/profile"
                 ? "bg-purple-600 text-white"
-                : "text-slate-300 hover:text-white hover:bg-slate-800"
+                : "text-text-muted hover:text-text-main hover:bg-bg-hover"
             }`}
           >
             Profile

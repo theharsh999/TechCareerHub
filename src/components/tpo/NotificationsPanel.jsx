@@ -28,8 +28,8 @@ function NotificationItem({ notification, onDismiss }) {
     <div
       className={`flex gap-3 px-4 py-3 rounded-xl border transition-colors ${
         notification.read
-          ? "border-slate-800/60 bg-transparent"
-          : "border-slate-700 bg-slate-800/30"
+          ? "border-border-subtle/60 bg-transparent"
+          : "border-border-subtle bg-bg-hover/30"
       }`}
     >
       <div className={`shrink-0 p-2 rounded-lg h-fit ${isRejection ? "text-rose-400 bg-rose-500/10" : config.className}`}>
@@ -38,14 +38,14 @@ function NotificationItem({ notification, onDismiss }) {
 
       <div className="flex-1 min-w-0">
         <div className="flex items-start justify-between gap-2">
-          <p className="text-sm font-medium text-slate-200">
+          <p className="text-sm font-medium text-text-main">
             {notification.title}
           </p>
           {!notification.read && (
             <span className="shrink-0 w-2 h-2 mt-1.5 rounded-full bg-indigo-500" />
           )}
         </div>
-        <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
+        <p className="text-xs text-text-muted mt-0.5 leading-relaxed">
           {notification.message}
         </p>
         <span className="text-[11px] text-slate-600 mt-1 inline-block">
@@ -56,7 +56,7 @@ function NotificationItem({ notification, onDismiss }) {
       {onDismiss && (
         <button
           onClick={() => onDismiss(notification.id)}
-          className="shrink-0 text-slate-600 hover:text-slate-400 transition-colors h-fit"
+          className="shrink-0 text-slate-600 hover:text-text-muted transition-colors h-fit"
           aria-label="Mark as read"
         >
           <X size={14} />
@@ -73,10 +73,10 @@ export default function NotificationsPanel({
   onMarkAllAsRead,
 }) {
   return (
-    <Card className="bg-[#11162277] border border-slate-800/80 rounded-2xl overflow-hidden">
-      <div className="flex items-center justify-between px-5 py-4 border-b border-slate-800/80">
+    <Card className="bg-bg-card border border-border-subtle rounded-2xl overflow-hidden">
+      <div className="flex items-center justify-between px-5 py-4 border-b border-border-subtle">
         <div className="flex items-center gap-2">
-          <h3 className="text-sm font-semibold text-white">Notifications</h3>
+          <h3 className="text-sm font-semibold text-text-main">Notifications</h3>
           {unreadCount > 0 && (
             <span className="text-[11px] font-semibold px-1.5 py-0.5 rounded-full bg-indigo-500 text-white">
               {unreadCount}
@@ -104,7 +104,7 @@ export default function NotificationsPanel({
         ))}
 
         {notifications.length === 0 && (
-          <div className="py-8 text-center text-slate-500 text-sm">
+          <div className="py-8 text-center text-text-main0 text-sm">
             You're all caught up.
           </div>
         )}
