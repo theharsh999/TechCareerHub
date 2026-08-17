@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../../lib/supabase";
-import Button from "../../components/common/Button";
-import Card from "../../components/common/Card";
 
 function Login() {
     const navigate = useNavigate();
@@ -66,77 +64,87 @@ function Login() {
     };
 
     return (
-        <div className="min-h-screen bg-[#0B0F19] text-slate-50 flex items-center justify-center p-6">
-            <Card className="w-full max-w-md">
+        <div className="min-h-screen bg-[#080B14] flex flex-col items-center justify-center p-4 sm:p-6 relative overflow-hidden">
+            
+            {/* Background Glows */}
+            <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-purple-600/20 rounded-full blur-[120px] pointer-events-none"></div>
 
-                <div className="mb-6">
-                    <h1 className="text-2xl font-bold">Welcome Back</h1>
-                    <p className="text-slate-400 mt-1">
-                        Login to your TechCareerHub account
+            <div className="w-full max-w-[420px] relative z-10">
+                {/* Header Section */}
+                <div className="text-center mb-8">
+                    <h1 className="text-3xl font-bold text-white tracking-tight mb-2">Welcome back</h1>
+                    <p className="text-slate-400 text-sm">
+                        Sign in to your TechCareerHub account
                     </p>
                 </div>
 
-                <form onSubmit={handleLogin} className="space-y-4">
+                {/* Card Container */}
+                <div className="bg-[#111827]/80 backdrop-blur-xl border border-slate-800/80 shadow-2xl rounded-2xl p-6 sm:p-8">
+                    <form onSubmit={handleLogin} className="space-y-5">
+                        
+                        <div>
+                            <label className="block text-sm font-medium text-slate-300 mb-1.5">
+                                Email Address
+                            </label>
+                            <input
+                                type="email"
+                                name="email"
+                                value={form.email}
+                                onChange={handleChange}
+                                required
+                                placeholder="you@example.com"
+                                className="w-full rounded-xl border border-slate-700/60 bg-[#0B0F19]/50 px-4 py-3 text-slate-200 placeholder-slate-500 outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-200"
+                            />
+                        </div>
 
-                    <div>
-                        <label className="block text-sm text-slate-300 mb-2">
-                            Email
-                        </label>
+                        <div>
+                            <div className="flex items-center justify-between mb-1.5">
+                                <label className="block text-sm font-medium text-slate-300">
+                                    Password
+                                </label>
+                            </div>
+                            <input
+                                type="password"
+                                name="password"
+                                value={form.password}
+                                onChange={handleChange}
+                                required
+                                placeholder="••••••••"
+                                className="w-full rounded-xl border border-slate-700/60 bg-[#0B0F19]/50 px-4 py-3 text-slate-200 placeholder-slate-500 outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-200"
+                            />
+                        </div>
 
-                        <input
-                            type="email"
-                            name="email"
-                            value={form.email}
-                            onChange={handleChange}
-                            required
-                            placeholder="you@example.com"
-                            className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2.5 outline-none focus:border-indigo-500"
-                        />
-                    </div>
+                        {error && (
+                            <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3">
+                                <p className="text-sm text-red-400 text-center font-medium">
+                                    {error}
+                                </p>
+                            </div>
+                        )}
 
-                    <div>
-                        <label className="block text-sm text-slate-300 mb-2">
-                            Password
-                        </label>
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="w-full mt-2 bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 text-white font-medium py-3 px-4 rounded-xl shadow-lg shadow-indigo-500/25 active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:pointer-events-none"
+                        >
+                            {loading ? "Signing in..." : "Sign In"}
+                        </button>
+                    </form>
 
-                        <input
-                            type="password"
-                            name="password"
-                            value={form.password}
-                            onChange={handleChange}
-                            required
-                            placeholder="Enter your password"
-                            className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2.5 outline-none focus:border-indigo-500"
-                        />
-                    </div>
-
-                    {error && (
-                        <p className="text-sm text-red-400">
-                            {error}
+                    <div className="mt-6 text-center">
+                        <p className="text-sm text-slate-400">
+                            Don't have an account?{" "}
+                            <Link
+                                to="/signup"
+                                className="text-indigo-400 font-medium hover:text-indigo-300 transition-colors underline decoration-indigo-400/30 underline-offset-4"
+                            >
+                                Create one
+                            </Link>
                         </p>
-                    )}
-
-                    <Button
-                        type="submit"
-                        className="w-full"
-                        disabled={loading}
-                    >
-                        {loading ? "Logging in..." : "Login"}
-                    </Button>
-
-                </form>
-
-                <p className="text-sm text-slate-400 text-center mt-6">
-                    Don't have an account?{" "}
-                    <Link
-                        to="/signup"
-                        className="text-indigo-400 hover:text-indigo-300"
-                    >
-                        Create one
-                    </Link>
-                </p>
-
-            </Card>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
