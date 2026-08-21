@@ -15,9 +15,24 @@ export function useCompanyProfileData() {
       .from("companies")
       .select("*")
       .eq("profile_id", user.id)
-      .single();
+      .maybeSingle();
 
     if (companyError) throw companyError;
+
+    if (!company) {
+      return {
+        name: "New Company",
+        logoInitials: "NC",
+        industry: "Not specified",
+        location: "Not specified",
+        website: "#",
+        about: "Please set up your company profile.",
+        activeOpportunities: 0,
+        totalApplicants: 0,
+        hiredThisSeason: 0,
+        raw: null
+      };
+    }
 
     // Get opportunities count
     const { data: opps, error: oppsError } = await supabase
@@ -87,11 +102,29 @@ export function useCompanyProfileData() {
   const updateProfile = useCallback(async (updates) => {
     if (!user?.id) return;
     try {
-      const { data, error } = await supabase
-        .from("companies")
-        .update(updates)
-        .eq("profile_id", user.id)
-        .select();
+      let result;
+      
+      // If profile.raw is null, the record doesn't exist yet, so we insert.
+      // Otherwise we update.
+      if (!profile || !profile.raw) {
+        result = await supabase
+          .from("companies")
+          .insert({ 
+            ...updates, 
+            id: crypto.randomUUID(), 
+            profile_id: user.id,
+            company_name: user.user_metadata?.full_name || user.user_metadata?.name || "New Company"
+          })
+          .select();
+      } else {
+        result = await supabase
+          .from("companies")
+          .update(updates)
+          .eq("profile_id", user.id)
+          .select();
+      }
+
+      const { data, error } = result;
 
       if (error) throw error;
       if (!data || data.length === 0) {
@@ -103,7 +136,7 @@ export function useCompanyProfileData() {
       setError(err);
       throw err; // throw so the caller UI can show the error
     }
-  }, [user, load]);
+  }, [user, load, profile]);
 
   return {
     profile,

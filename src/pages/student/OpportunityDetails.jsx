@@ -294,7 +294,7 @@ const OpportunityDetails = () => {
 
             <p>
               <span className="text-text-main0">Minimum CGPA:</span>{" "}
-              {opportunity.minimum_cgpa || "Not specified"}
+              {opportunity.minimum_cgpa ? opportunity.minimum_cgpa : "No minimum"}
             </p>
           </div>
 
@@ -317,33 +317,29 @@ const OpportunityDetails = () => {
 
             <div className="space-y-3 text-text-muted">
 
-              {opportunity.required_branch?.length > 0 && (
-                <p>
-                  <span className="text-text-main0">
-                    Branch:
-                  </span>{" "}
-                  {opportunity.required_branch.join(", ")}
-                </p>
-              )}
+              <p>
+                <span className="text-text-main0">Branch:</span>{" "}
+                {opportunity.required_branch?.length > 0 
+                  ? opportunity.required_branch.join(", ") 
+                  : "Open to all branches"}
+              </p>
 
-              {opportunity.eligible_years?.length > 0 && (
-                <p>
-                  <span className="text-text-main0">
-                    Years:
-                  </span>{" "}
-                  {opportunity.eligible_years.join(", ")}
-                </p>
-              )}
+              <p>
+                <span className="text-text-main0">Years:</span>{" "}
+                {opportunity.eligible_years?.length > 0 
+                  ? opportunity.eligible_years.join(", ") 
+                  : "Open to all years"}
+              </p>
 
             </div>
           </div>
 
-          {opportunity.required_skills?.length > 0 && (
-            <div className="mb-8">
-              <h2 className="text-2xl font-semibold mb-4">
-                Required Skills
-              </h2>
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">
+              Required Skills
+            </h2>
 
+            {opportunity.required_skills?.length > 0 ? (
               <div className="flex flex-wrap gap-2">
                 {opportunity.required_skills.map((skill) => (
                   <span
@@ -354,8 +350,10 @@ const OpportunityDetails = () => {
                   </span>
                 ))}
               </div>
-            </div>
-          )}
+            ) : (
+              <p className="text-text-muted">No specific skills required.</p>
+            )}
+          </div>
 
           {/* Eligibility Checker & Apply Flow */}
           <div className="border-t border-border-subtle pt-8">

@@ -32,9 +32,10 @@ export function useCompanyApplicantsData() {
       .from("companies")
       .select("id")
       .eq("profile_id", user.id)
-      .single();
+      .maybeSingle();
 
     if (companyError) throw companyError;
+    if (!company) return [];
 
     // 2. Get opportunities
     const { data: opportunities, error: oppError } = await supabase

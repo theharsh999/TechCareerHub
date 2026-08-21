@@ -40,9 +40,27 @@ export function useCompanyDashboardData() {
       .from("companies")
       .select("*")
       .eq("profile_id", user.id)
-      .single();
+      .maybeSingle();
 
     if (companyError) throw companyError;
+
+    if (!company) {
+      return {
+        profile: {
+          name: "New Company",
+          logoInitials: "NC",
+          industry: "Not specified",
+          location: "Not specified",
+          website: "#",
+          about: "Please set up your company profile.",
+          activeOpportunities: 0,
+          totalApplicants: 0,
+          hiredThisSeason: 0,
+        },
+        opportunities: [],
+        applicants: [],
+      };
+    }
 
     // 2. Get company's opportunities
     const { data: opportunityData, error: opportunityError } = await supabase
@@ -201,9 +219,10 @@ export function useCompanyDashboardData() {
           .from("companies")
           .select("id")
           .eq("profile_id", user.id)
-          .single();
+          .maybeSingle();
 
         if (companyError) throw companyError;
+        if (!company) throw new Error("Please complete your company profile before posting an opportunity.");
 
         const { error } = await supabase
           .from("opportunities")
@@ -215,6 +234,10 @@ export function useCompanyDashboardData() {
             stipend: opportunity.stipend,
             application_deadline: opportunity.deadline,
             status: "Open",
+            minimum_cgpa: opportunity.minimum_cgpa || null,
+            required_branch: opportunity.eligible_branches?.length > 0 ? opportunity.eligible_branches : null,
+            eligible_years: opportunity.eligible_years?.length > 0 ? opportunity.eligible_years : null,
+            required_skills: opportunity.required_skills?.length > 0 ? opportunity.required_skills : null,
           });
 
         if (error) throw error;
