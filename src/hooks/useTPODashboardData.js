@@ -15,6 +15,8 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import { supabase } from "../lib/supabase";
 import { useAuth } from "../context/AuthContext";
 
+
+
 const DISPLAY_STATUS_MAP = {
   applied: "Applied",
   shortlisted: "Shortlisted",
@@ -31,7 +33,7 @@ export function useTPODashboardData() {
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [riskAlerts, setRiskAlerts] = useState([]);
   const fetchDashboardData = useCallback(async () => {
     if (!user?.id) {
       throw new Error("No authenticated user found.");

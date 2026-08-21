@@ -1,13 +1,9 @@
 // src/components/company/PostOpportunityModal.jsx
-//
-// ASSUMPTION: no existing Modal/Dialog common component was in the files
-// I received, so this ships its own lightweight overlay. If the project
-// already has components/common/Modal.jsx, swap this wrapper for that and
-// keep the form body as-is.
-
-import { useState } from "react";
-import { X, Plus, XCircle } from "lucide-react";
+import { useState, useMemo } from "react";
+import { X, Plus, XCircle, Calendar, Users, Award } from "lucide-react";
 import Button from "../common/Button";
+import { mockStudentProfiles } from "../../constants/tpoMockData";
+import { calculateTalentMatch } from "../../lib/driveEngine";
 
 const TYPES = ["Internship", "Full-time"];
 
@@ -22,16 +18,30 @@ export default function PostOpportunityModal({ open, onClose, onSubmit }) {
     eligible_branches: [],
     eligible_years: [],
     required_skills: [],
+    scheduleDrive: true,
+    pptDate: "",
+    oaDate: "",
   });
 
   const [branchInput, setBranchInput] = useState("");
   const [yearInput, setYearInput] = useState("");
   const [skillInput, setSkillInput] = useState("");
 
+  // Calculate live talent match based on TPO-verified data
+  const talentMatch = useMemo(() => {
+    return calculateTalentMatch(mockStudentProfiles, {
+      minCgpa: parseFloat(form.minimum_cgpa) || 0,
+      allowBacklogs: false,
+      requiredSkills: form.required_skills,
+    });
+  }, [form.minimum_cgpa, form.required_skills]);
+
   if (!open) return null;
 
-  const update = (field) => (e) =>
-    setForm((prev) => ({ ...prev, [field]: e.target.value }));
+  const update = (field) => (e) => {
+    const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    setForm((prev) => ({ ...prev, [field]: value }));
+  };
 
   const addTag = (field, input, setInput) => {
     if (!input.trim()) return;
@@ -56,11 +66,14 @@ export default function PostOpportunityModal({ open, onClose, onSubmit }) {
     onSubmit({
       ...form,
       minimum_cgpa: form.minimum_cgpa ? parseFloat(form.minimum_cgpa) : null,
+      eligibleStudentsCount: talentMatch.eligibleCount,
+      avgMatchScore: talentMatch.averageMatchScore,
     });
     
     setForm({ 
       title: "", type: "Internship", location: "", stipend: "", deadline: "",
-      minimum_cgpa: "", eligible_branches: [], eligible_years: [], required_skills: []
+      minimum_cgpa: "", eligible_branches: [], eligible_years: [], required_skills: [],
+      scheduleDrive: true, pptDate: "", oaDate: ""
     });
     setBranchInput("");
     setYearInput("");
@@ -74,16 +87,35 @@ export default function PostOpportunityModal({ open, onClose, onSubmit }) {
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={onClose}
       />
-      <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl border border-border-subtle bg-bg-card p-5">
+      <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl border border-border-subtle bg-bg-card p-6">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-text-main font-semibold text-sm">Post New Opportunity</h3>
+          <h3 className="text-text-main font-semibold text-base flex items-center gap-2">
+            Post Opportunity & Request Campus Drive
+          </h3>
           <button
             onClick={onClose}
-            className="text-text-main0 hover:text-text-muted"
+            className="text-text-muted hover:text-text-main"
             aria-label="Close"
           >
             <X size={18} />
           </button>
+        </div>
+
+        {/* Dynamic Talent Intelligence Badge */}
+        <div className="mb-5 p-3 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Users className="text-primary" size={18} />
+            <div>
+              <p className="text-xs font-semibold text-text-main">Verified Talent Match</p>
+              <p className="text-[11px] text-text-muted">
+                TPO Verified Pool: <span className="font-bold text-primary">{talentMatch.eligibleCount} Eligible Students</span>
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-1 bg-bg-card px-2 py-1 rounded-lg border border-border-subtle">
+            <Award size={14} className="text-emerald-500" />
+            <span className="text-xs font-bold text-text-main">{talentMatch.averageMatchScore}% Avg Match</span>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
@@ -91,62 +123,100 @@ export default function PostOpportunityModal({ open, onClose, onSubmit }) {
           <div className="flex flex-col gap-3">
             <h4 className="text-sm font-semibold text-text-main border-b border-border-subtle pb-1">Basic Information</h4>
             <div className="flex flex-col gap-1">
-            <label className="text-xs text-text-muted">Role title</label>
-            <input
-              value={form.title}
-              onChange={update("title")}
-              placeholder="e.g. Frontend Developer Intern"
-              className="bg-bg-card/60 border border-border-subtle rounded-lg px-3 py-2 text-sm text-text-main focus:outline-none focus:border-primary"
-              required
-            />
-          </div>
-
-          <div className="grid grid-cols-2 gap-3">
-            <div className="flex flex-col gap-1">
-              <label className="text-xs text-text-muted">Type</label>
-              <select
-                value={form.type}
-                onChange={update("type")}
-                className="bg-bg-card/60 border border-border-subtle rounded-lg px-3 py-2 text-sm text-text-main focus:outline-none focus:border-primary"
-              >
-                {TYPES.map((t) => (
-                  <option key={t} value={t}>{t}</option>
-                ))}
-              </select>
-            </div>
-            <div className="flex flex-col gap-1">
-              <label className="text-xs text-text-muted">Location</label>
+              <label className="text-xs text-text-muted">Role Title</label>
               <input
-                value={form.location}
-                onChange={update("location")}
-                placeholder="Remote / City"
-                className="bg-bg-card/60 border border-border-subtle rounded-lg px-3 py-2 text-sm text-text-main focus:outline-none focus:border-primary"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3">
-            <div className="flex flex-col gap-1">
-              <label className="text-xs text-text-muted">Stipend / CTC</label>
-              <input
-                value={form.stipend}
-                onChange={update("stipend")}
-                placeholder="₹25,000/mo or 6 LPA"
-                className="bg-bg-card/60 border border-border-subtle rounded-lg px-3 py-2 text-sm text-text-main focus:outline-none focus:border-primary"
-              />
-            </div>
-            <div className="flex flex-col gap-1">
-              <label className="text-xs text-text-muted">Deadline</label>
-              <input
-                type="date"
-                value={form.deadline}
-                onChange={update("deadline")}
-                className="bg-bg-card/60 border border-border-subtle rounded-lg px-3 py-2 text-sm text-text-main focus:outline-none focus:border-primary"
+                value={form.title}
+                onChange={update("title")}
+                placeholder="e.g. Frontend Developer Intern"
+                className="bg-bg-card border border-border-subtle rounded-lg px-3 py-2 text-sm text-text-main focus:outline-none focus:border-primary"
                 required
               />
             </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div className="flex flex-col gap-1">
+                <label className="text-xs text-text-muted">Type</label>
+                <select
+                  value={form.type}
+                  onChange={update("type")}
+                  className="bg-bg-card border border-border-subtle rounded-lg px-3 py-2 text-sm text-text-main focus:outline-none focus:border-primary"
+                >
+                  {TYPES.map((t) => (
+                    <option key={t} value={t}>{t}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="flex flex-col gap-1">
+                <label className="text-xs text-text-muted">Location</label>
+                <input
+                  value={form.location}
+                  onChange={update("location")}
+                  placeholder="Remote / City"
+                  className="bg-bg-card border border-border-subtle rounded-lg px-3 py-2 text-sm text-text-main focus:outline-none focus:border-primary"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div className="flex flex-col gap-1">
+                <label className="text-xs text-text-muted">Stipend / CTC</label>
+                <input
+                  value={form.stipend}
+                  onChange={update("stipend")}
+                  placeholder="₹25,000/mo or 6 LPA"
+                  className="bg-bg-card border border-border-subtle rounded-lg px-3 py-2 text-sm text-text-main focus:outline-none focus:border-primary"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <label className="text-xs text-text-muted">Application Deadline</label>
+                <input
+                  type="date"
+                  value={form.deadline}
+                  onChange={update("deadline")}
+                  className="bg-bg-card border border-border-subtle rounded-lg px-3 py-2 text-sm text-text-main focus:outline-none focus:border-primary"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Campus Drive Slot Booking Sub-section */}
+            <div className="p-3 border border-border-subtle rounded-xl bg-bg-card/40 flex flex-col gap-3 mt-2">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-text-main flex items-center gap-1.5">
+                  <Calendar size={14} className="text-primary" /> Request Campus Drive Slot
+                </span>
+                <input
+                  type="checkbox"
+                  checked={form.scheduleDrive}
+                  onChange={update("scheduleDrive")}
+                  className="accent-primary h-4 w-4 rounded cursor-pointer"
+                />
+              </div>
+
+              {form.scheduleDrive && (
+                <div className="grid grid-cols-2 gap-3 pt-1">
+                  <div className="flex flex-col gap-1">
+                    <label className="text-[11px] text-text-muted">PPT Preferred Date</label>
+                    <input
+                      type="date"
+                      value={form.pptDate}
+                      onChange={update("pptDate")}
+                      className="bg-bg-card border border-border-subtle rounded-lg px-2.5 py-1.5 text-xs text-text-main"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <label className="text-[11px] text-text-muted">OA / Assessment Date</label>
+                    <input
+                      type="date"
+                      value={form.oaDate}
+                      onChange={update("oaDate")}
+                      className="bg-bg-card border border-border-subtle rounded-lg px-2.5 py-1.5 text-xs text-text-main"
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
 
           {/* ELIGIBILITY & REQUIREMENTS */}
           <div className="flex flex-col gap-3">
@@ -254,7 +324,7 @@ export default function PostOpportunityModal({ open, onClose, onSubmit }) {
               Cancel
             </Button>
             <Button type="submit" variant="primary">
-              Post Opportunity
+              Submit & Request Drive Slot
             </Button>
           </div>
         </form>
