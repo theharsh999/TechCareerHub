@@ -76,6 +76,7 @@ Strengths + Weaknesses
 Personalized Improvement Suggestions
      ↓
 Learning Resource Recommendation
+
 ```
 
 The assessment currently supports:
@@ -296,3 +297,4 @@ TechCareerHub is continuously being improved with new placement intelligence and
 ## 📄 License
 
 This project is developed for educational and hackathon purposes.
+
