@@ -1,8 +1,4 @@
 // src/components/layout/Sidebar.jsx
-//
-// PLACEHOLDER — your real Sidebar.jsx wasn't in the files I received.
-// Section is chosen from the current route so it works for both /tpo and
-// /company without extra props. Drop this file when merging.
 
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -11,6 +7,7 @@ import {
   Bell,
   Building2,
   FileText,
+  AlertTriangle,
 } from "lucide-react";
 
 const SECTIONS = {
@@ -18,6 +15,7 @@ const SECTIONS = {
     { to: "/tpo/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { to: "/tpo/students", label: "Students", icon: Users },
     { to: "/tpo/notifications", label: "Notifications", icon: Bell },
+    { to: "/tpo/risk-alerts", label: "Risk Alerts", icon: AlertTriangle },
   ],
   company: [
     { to: "/company/dashboard", label: "Dashboard", icon: LayoutDashboard },

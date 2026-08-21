@@ -105,3 +105,24 @@ export const mockApplicants = [
     status: APPLICANT_STATUSES.OFFERED,
   },
 ];
+
+export const DRIVE_STATUSES = {
+  PENDING: "Pending Approval",
+  APPROVED: "Drive Approved",
+  RESCHEDULED: "Reschedule Suggested",
+};
+
+export const mockCampusDrives = [
+  {
+    id: "DRV-101",
+    opportunityId: "OPP-201",
+    title: "SDE Intern Campus Drive",
+    minCgpa: 7.5,
+    requiredSkills: ["JavaScript", "React", "Node.js"],
+    pptSlot: "2026-09-10T10:00",
+    oaSlot: "2026-09-11T14:00",
+    interviewSlot: "2026-09-12T09:00",
+    status: DRIVE_STATUSES.APPROVED,
+    eligibleCount: 14,
+  },
+];

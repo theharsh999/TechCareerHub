@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
 
+import TPORiskAlerts from "./pages/tpo/TPORiskAlerts";
 import StudentDashboard from "./pages/student/StudentDashboard";
 import StudentProfile from "./pages/student/StudentProfile";
 import StudentApplications from "./pages/student/StudentApplications";
@@ -114,6 +115,13 @@ function App() {
                 <TPONotifications />
               </ProtectedRoute>
             } />
+            <Route
+             path="/tpo/risk-alerts"
+             element={
+              <ProtectedRoute allowedRole="tpo">
+              <TPORiskAlerts />
+              </ProtectedRoute>
+           } />
           <Route
             path="/tpo/students"
             element={

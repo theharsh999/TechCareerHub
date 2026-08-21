@@ -1,7 +1,5 @@
-// src/components/company/ApplicantsTable.jsx
-
+import { ShieldCheck, Award } from "lucide-react";
 import Card from "../common/Card";
-import Badge from "../common/Badge";
 import { APPLICANT_STATUSES } from "../../constants/companyMockData";
 
 const STATUS_STYLES = {
@@ -33,6 +31,8 @@ export default function ApplicantsTable({ applicants = [], onStatusChange }) {
             <tr className="text-left text-xs text-text-main0 border-b border-border-subtle">
               <th className="px-5 py-3 font-medium">Student</th>
               <th className="px-5 py-3 font-medium">Opportunity</th>
+              <th className="px-5 py-3 font-medium">Verification</th>
+              <th className="px-5 py-3 font-medium">Match Score</th>
               <th className="px-5 py-3 font-medium">Applied</th>
               <th className="px-5 py-3 font-medium">Resume</th>
               <th className="px-5 py-3 font-medium">Status</th>
@@ -49,6 +49,17 @@ export default function ApplicantsTable({ applicants = [], onStatusChange }) {
                   <div className="text-xs text-text-main0">{a.rollNo}</div>
                 </td>
                 <td className="px-5 py-3 text-text-muted">{a.opportunity}</td>
+                <td className="px-5 py-3">
+                  <span className="inline-flex items-center gap-1 text-[11px] text-emerald-400 font-medium bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/20">
+                    <ShieldCheck size={12} /> Verified
+                  </span>
+                </td>
+                <td className="px-5 py-3">
+                  <div className="flex items-center gap-1 font-semibold text-xs text-primary">
+                    <Award size={13} className="text-emerald-400" />
+                    {a.matchScore || "88"}%
+                  </div>
+                </td>
                 <td className="px-5 py-3 text-text-muted">{formatDate(a.appliedDate)}</td>
                 <td className="px-5 py-3">
                   <a
@@ -76,7 +87,7 @@ export default function ApplicantsTable({ applicants = [], onStatusChange }) {
 
             {applicants.length === 0 && (
               <tr>
-                <td colSpan={5} className="px-5 py-8 text-center text-text-main0 text-sm">
+                <td colSpan={7} className="px-5 py-8 text-center text-text-main0 text-sm">
                   No applicants yet.
                 </td>
               </tr>

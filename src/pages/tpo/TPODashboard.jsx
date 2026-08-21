@@ -1,17 +1,7 @@
-// src/pages/tpo/TPODashboard.jsx
-//
-// This page intentionally does NOT import DashboardLayout directly — it
-// assumes your routing wraps TPO routes with <DashboardLayout><Outlet/></DashboardLayout>
-// (a common pattern). If instead each page must wrap itself, just do:
-//
-//   import DashboardLayout from "../../components/layout/DashboardLayout";
-//   export default function TPODashboard() {
-//     return <DashboardLayout>{/* content below */}</DashboardLayout>;
-//   }
-
 import { RefreshCw } from "lucide-react";
 import StatsOverview from "../../components/tpo/StatsOverview";
 import ApplicationsOverviewTable from "../../components/tpo/ApplicationsOverviewTable";
+import DriveRequestsTable from "../../components/tpo/DriveRequestsTable";
 import NotificationsPanel from "../../components/tpo/NotificationsPanel";
 import Button from "../../components/common/Button";
 import { useTPODashboardData } from "../../hooks/useTPODashboardData";
@@ -44,7 +34,7 @@ export default function TPODashboard() {
           <div>
             <h1 className="text-xl font-semibold text-text-main">TPO Dashboard</h1>
             <p className="text-sm text-text-muted mt-0.5">
-              Overview of student applications and placement activity
+              Overview of student applications, campus drive approvals, and placement activity
             </p>
           </div>
           <Button
@@ -58,6 +48,9 @@ export default function TPODashboard() {
         </div>
 
         <StatsOverview stats={stats} />
+
+        {/* Smart Drive Request Approvals (Company <-> TPO Sync) */}
+        <DriveRequestsTable />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2">
