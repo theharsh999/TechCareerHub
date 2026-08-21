@@ -8,6 +8,9 @@ import StudentProfile from "./pages/student/StudentProfile";
 import StudentApplications from "./pages/student/StudentApplications";
 import Opportunities from "./pages/student/Opportunities";
 import OpportunityDetails from "./pages/student/OpportunityDetails";
+import SkillSelection from "./pages/student/SkillSelection";
+import Assessment from "./pages/student/Assessment";
+import AssessmentResult from "./pages/student/AssessmentResult";
 
 import CompanyDashboard from "./pages/company/CompanyDashboard";
 import CompanyOpportunities from "./pages/company/CompanyOpportunities";
@@ -66,6 +69,27 @@ function App() {
             element={
               <ProtectedRoute allowedRole="student">
                 <OpportunityDetails />
+              </ProtectedRoute>
+            } />
+          <Route
+            path="/student/assessment"
+            element={
+              <ProtectedRoute allowedRole="student">
+                <SkillSelection />
+              </ProtectedRoute>
+            } />
+          <Route
+            path="/student/assessment/quiz"
+            element={
+              <ProtectedRoute allowedRole="student">
+                <Assessment />
+              </ProtectedRoute>
+            } />
+          <Route
+            path="/student/assessment/result"
+            element={
+              <ProtectedRoute allowedRole="student">
+                <AssessmentResult />
               </ProtectedRoute>
             } />
 

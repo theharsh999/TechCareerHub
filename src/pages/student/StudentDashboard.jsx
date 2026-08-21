@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BrainCircuit, ArrowRight } from "lucide-react";
 import { supabase } from "../../lib/supabase";
 import StudentNavbar from "../../components/student/StudentNavbar";
 
@@ -120,6 +121,33 @@ const StudentDashboard = () => {
             </p>
           </div>
 
+        </div>
+
+        {/* AI Assessment Feature */}
+        <div className="bg-bg-card border border-border-subtle rounded-2xl p-6 mb-10 flex flex-col sm:flex-row items-center justify-between gap-6 relative overflow-hidden">
+          {/* Subtle background decoration */}
+          <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
+          
+          <div className="flex items-start sm:items-center gap-5 relative z-10">
+            <div className="bg-blue-500/10 p-4 rounded-2xl border border-blue-500/20">
+              <BrainCircuit className="w-8 h-8 text-blue-500" />
+            </div>
+            <div>
+              <h2 className="text-xl font-bold mb-1">AI Skill Assessment</h2>
+              <p className="text-text-muted text-sm sm:text-base max-w-xl">
+                Test your technical skills and discover the areas you should improve. 
+                <span className="inline-block ml-2 text-xs font-semibold px-2 py-0.5 rounded-full bg-border-subtle">10 questions • ~5 min</span>
+              </p>
+            </div>
+          </div>
+          
+          <button 
+            onClick={() => navigate('/student/assessment')}
+            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors flex items-center justify-center gap-2 relative z-10 whitespace-nowrap"
+          >
+            Take Assessment
+            <ArrowRight className="w-4 h-4" />
+          </button>
         </div>
 
         {/* Recent Applications */}
